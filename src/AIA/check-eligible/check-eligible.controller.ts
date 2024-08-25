@@ -1,8 +1,10 @@
-import { Controller, Get, Post, Body, Param, Delete } from '@nestjs/common';
+
+import { Controller, Get,  Param, Delete } from '@nestjs/common';
+//import { Controller, Get, Post, Body, Param, Delete } from '@nestjs/common';
 import { CheckEligibleService } from './check-eligible.service';
 //import { CreateCheckEligibleDto } from './dto/create-check-eligible.dto';
 //import { UpdateCheckEligibleDto } from './dto/update-check-eligible.dto';
-import {AccessTokenDTO} from '../dto/aia.dto';
+//import {AccessTokenDTO} from '../dto/aia.dto';
 
 
 @Controller('/aia/eligible')
@@ -16,6 +18,8 @@ export class CheckEligibleController {
   findAll() {
      //return 'OOO'
     return this.checkEligibleService.Eligible();
+    //return this.checkEligibleService.EncryptAESECB('11750');
+    
   }
 
   

@@ -12,11 +12,12 @@ import { AccessToken } from './dto/create-check-eligible.dto';
 
 const AIA_APIURL= process.env.AIA_APIURL;
 const API_CONTENTTYPE= process.env.API_CONTENTTYPE;
-const AIA_APISecretkey = process.env.AIA_APISubscription
+const AIA_APISecretkey = process.env.AIA_APISecretkey
+const AIA_APISubscription = process.env.AIA_APISubscription
 const AIA_APIMUserId = process.env.AIA_APIMUserId
 const AIA_APIMAppId = [process.env.AIA_APIMAppId]
-
-
+const aesEcb = require('aes-ecb');
+let encryptText ;
 class AccessTokenAIA {
   tokenKey: string;
   tokenstatus: string;
@@ -35,7 +36,7 @@ export class CheckEligibleService {
     axios.post(apiURL, { userId: AIA_APIMUserId , appId: AIA_APIMAppId},{
       headers:{
         'Content-Type': API_CONTENTTYPE ,
-        'Ocp-Apim-Subscription-Key':AIA_APISecretkey,
+        'Ocp-Apim-Subscription-Key':AIA_APISubscription,
       },
     }).then((response)=>{
       accessTokenAIA.tokenKey =response.data.accessTokenInfo.accessToken;
@@ -51,6 +52,7 @@ return accessTokenAIA;
     let gettoken = await this.requestAccessToken(); 
     let ResponecheckEligible;
     tokenKey = gettoken.tokenKey;
+    console.log(tokenKey)
     if ((gettoken.tokenKey == undefined)&&(tokenKey==null)){
       gettoken = await this.requestAccessToken(); 
       tokenKey = gettoken.tokenKey;
@@ -58,7 +60,7 @@ return accessTokenAIA;
       const Eligible={
         "RefId": "oljhnklefhbilubsEFJKLb651",
         "Username": "bhcsi025",
-        "HospitalCode": "7IUZR+KTdDTIyiUHvvvAUQ==",
+        "HospitalCode": "7IUZR+KTdDTIyiUHvvvAUQ==", //this.EncryptAESECB('11750'),
         "InsurerCode": "13",
         "ElectronicSignature": "",
         "DataJsonType": "3",
@@ -84,18 +86,19 @@ return accessTokenAIA;
       const apiURL= `${AIA_APIURL}/SmartClaim/checkEligible`;
       
       try {
-
+        console.log(AIA_APISubscription)
+        console.log(tokenKey)
         axios.post(apiURL, {RefId:Eligible.RefId,HospitalCode:Eligible.HospitalCode,InsurerCode:Eligible.InsurerCode,Username:Eligible.Username,DataJsonType:Eligible.DataJsonType, DataJson:Eligible.DataJson }, {
              headers: {
                'Content-Type': 'application/json',
-               'Ocp-Apim-Subscription-Key': AIA_APISecretkey,
+               'Ocp-Apim-Subscription-Key': '21242855bfee49c0afefea2915f67388',//AIA_APISubscription,
                'Apim-Auth-Secure-Token': tokenKey
              },
            })
            .then((response) => {
        
-          //console.log(response);
-            console.log(response.status);
+          console.log(response);
+           // console.log(response.status);
        
             response.data.Data.CoverageList.forEach((item, index) => {
              ResponecheckEligible =item
@@ -107,15 +110,17 @@ return accessTokenAIA;
            .catch((error) => {
             // console.error('Error:', error);
             // this.errored = true;
+            console.log('---- cathc error');
            })
            .finally(() => {
            //  this.loading = false;
+           console.log('---- finally');
            });
           }catch(error){console.log(error)}
      //let gettoken =this.requestAccessToken()
     
    
-    return ResponecheckEligible
+    return Eligible //ResponecheckEligible
   }
 
 
@@ -134,7 +139,11 @@ async episodelist(PID: string ,EpiDate: string,EpiType: string) {
 }
 
 
-
+ EncryptAESECB(text:string):string{
+  const Secretkey = AIA_APISecretkey;
+   encryptText = aesEcb.encrypt(Secretkey,text)
+  return encryptText;
+}
 
 
 

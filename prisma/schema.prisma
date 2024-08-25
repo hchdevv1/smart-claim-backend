@@ -28,3 +28,12 @@ model PolicyType {
   PolicyTypeCode String
   PolicyTypeDesc String?
 }
+
+model ClaimTransection {
+  ClaimTranId   Int       @id @default(autoincrement())
+  RefId         String
+  TransactionNo String
+  HN            String
+  VN            String
+  CreateAt      DateTime? @default(dbgenerated("(CURRENT_TIMESTAMP AT TIME ZONE 'Asia/Bangkok'::text)")) @db.Timestamptz(6)
+}

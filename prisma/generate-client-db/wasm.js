@@ -140,6 +140,15 @@ exports.Prisma.PolicyTypeScalarFieldEnum = {
   PolicyTypeDesc: 'PolicyTypeDesc'
 };
 
+exports.Prisma.ClaimTransectionScalarFieldEnum = {
+  ClaimTranId: 'ClaimTranId',
+  RefId: 'RefId',
+  TransactionNo: 'TransactionNo',
+  HN: 'HN',
+  VN: 'VN',
+  CreateAt: 'CreateAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -159,7 +168,8 @@ exports.Prisma.NullsOrder = {
 exports.Prisma.ModelName = {
   IllnessSurgery: 'IllnessSurgery',
   IllnessType: 'IllnessType',
-  PolicyType: 'PolicyType'
+  PolicyType: 'PolicyType',
+  ClaimTransection: 'ClaimTransection'
 };
 
 /**

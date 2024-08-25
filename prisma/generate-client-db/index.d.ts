@@ -28,6 +28,11 @@ export type IllnessType = $Result.DefaultSelection<Prisma.$IllnessTypePayload>
  * 
  */
 export type PolicyType = $Result.DefaultSelection<Prisma.$PolicyTypePayload>
+/**
+ * Model ClaimTransection
+ * 
+ */
+export type ClaimTransection = $Result.DefaultSelection<Prisma.$ClaimTransectionPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -180,6 +185,16 @@ export class PrismaClient<
     * ```
     */
   get policyType(): Prisma.PolicyTypeDelegate<ExtArgs>;
+
+  /**
+   * `prisma.claimTransection`: Exposes CRUD operations for the **ClaimTransection** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ClaimTransections
+    * const claimTransections = await prisma.claimTransection.findMany()
+    * ```
+    */
+  get claimTransection(): Prisma.ClaimTransectionDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -659,7 +674,8 @@ export namespace Prisma {
   export const ModelName: {
     IllnessSurgery: 'IllnessSurgery',
     IllnessType: 'IllnessType',
-    PolicyType: 'PolicyType'
+    PolicyType: 'PolicyType',
+    ClaimTransection: 'ClaimTransection'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -675,7 +691,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "illnessSurgery" | "illnessType" | "policyType"
+      modelProps: "illnessSurgery" | "illnessType" | "policyType" | "claimTransection"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -886,6 +902,76 @@ export namespace Prisma {
           count: {
             args: Prisma.PolicyTypeCountArgs<ExtArgs>
             result: $Utils.Optional<PolicyTypeCountAggregateOutputType> | number
+          }
+        }
+      }
+      ClaimTransection: {
+        payload: Prisma.$ClaimTransectionPayload<ExtArgs>
+        fields: Prisma.ClaimTransectionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ClaimTransectionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClaimTransectionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ClaimTransectionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClaimTransectionPayload>
+          }
+          findFirst: {
+            args: Prisma.ClaimTransectionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClaimTransectionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ClaimTransectionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClaimTransectionPayload>
+          }
+          findMany: {
+            args: Prisma.ClaimTransectionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClaimTransectionPayload>[]
+          }
+          create: {
+            args: Prisma.ClaimTransectionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClaimTransectionPayload>
+          }
+          createMany: {
+            args: Prisma.ClaimTransectionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ClaimTransectionCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClaimTransectionPayload>[]
+          }
+          delete: {
+            args: Prisma.ClaimTransectionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClaimTransectionPayload>
+          }
+          update: {
+            args: Prisma.ClaimTransectionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClaimTransectionPayload>
+          }
+          deleteMany: {
+            args: Prisma.ClaimTransectionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ClaimTransectionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.ClaimTransectionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClaimTransectionPayload>
+          }
+          aggregate: {
+            args: Prisma.ClaimTransectionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateClaimTransection>
+          }
+          groupBy: {
+            args: Prisma.ClaimTransectionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ClaimTransectionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ClaimTransectionCountArgs<ExtArgs>
+            result: $Utils.Optional<ClaimTransectionCountAggregateOutputType> | number
           }
         }
       }
@@ -3763,6 +3849,930 @@ export namespace Prisma {
 
 
   /**
+   * Model ClaimTransection
+   */
+
+  export type AggregateClaimTransection = {
+    _count: ClaimTransectionCountAggregateOutputType | null
+    _avg: ClaimTransectionAvgAggregateOutputType | null
+    _sum: ClaimTransectionSumAggregateOutputType | null
+    _min: ClaimTransectionMinAggregateOutputType | null
+    _max: ClaimTransectionMaxAggregateOutputType | null
+  }
+
+  export type ClaimTransectionAvgAggregateOutputType = {
+    ClaimTranId: number | null
+  }
+
+  export type ClaimTransectionSumAggregateOutputType = {
+    ClaimTranId: number | null
+  }
+
+  export type ClaimTransectionMinAggregateOutputType = {
+    ClaimTranId: number | null
+    RefId: string | null
+    TransactionNo: string | null
+    HN: string | null
+    VN: string | null
+    CreateAt: Date | null
+  }
+
+  export type ClaimTransectionMaxAggregateOutputType = {
+    ClaimTranId: number | null
+    RefId: string | null
+    TransactionNo: string | null
+    HN: string | null
+    VN: string | null
+    CreateAt: Date | null
+  }
+
+  export type ClaimTransectionCountAggregateOutputType = {
+    ClaimTranId: number
+    RefId: number
+    TransactionNo: number
+    HN: number
+    VN: number
+    CreateAt: number
+    _all: number
+  }
+
+
+  export type ClaimTransectionAvgAggregateInputType = {
+    ClaimTranId?: true
+  }
+
+  export type ClaimTransectionSumAggregateInputType = {
+    ClaimTranId?: true
+  }
+
+  export type ClaimTransectionMinAggregateInputType = {
+    ClaimTranId?: true
+    RefId?: true
+    TransactionNo?: true
+    HN?: true
+    VN?: true
+    CreateAt?: true
+  }
+
+  export type ClaimTransectionMaxAggregateInputType = {
+    ClaimTranId?: true
+    RefId?: true
+    TransactionNo?: true
+    HN?: true
+    VN?: true
+    CreateAt?: true
+  }
+
+  export type ClaimTransectionCountAggregateInputType = {
+    ClaimTranId?: true
+    RefId?: true
+    TransactionNo?: true
+    HN?: true
+    VN?: true
+    CreateAt?: true
+    _all?: true
+  }
+
+  export type ClaimTransectionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ClaimTransection to aggregate.
+     */
+    where?: ClaimTransectionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ClaimTransections to fetch.
+     */
+    orderBy?: ClaimTransectionOrderByWithRelationInput | ClaimTransectionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ClaimTransectionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ClaimTransections from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ClaimTransections.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ClaimTransections
+    **/
+    _count?: true | ClaimTransectionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ClaimTransectionAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ClaimTransectionSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ClaimTransectionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ClaimTransectionMaxAggregateInputType
+  }
+
+  export type GetClaimTransectionAggregateType<T extends ClaimTransectionAggregateArgs> = {
+        [P in keyof T & keyof AggregateClaimTransection]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateClaimTransection[P]>
+      : GetScalarType<T[P], AggregateClaimTransection[P]>
+  }
+
+
+
+
+  export type ClaimTransectionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ClaimTransectionWhereInput
+    orderBy?: ClaimTransectionOrderByWithAggregationInput | ClaimTransectionOrderByWithAggregationInput[]
+    by: ClaimTransectionScalarFieldEnum[] | ClaimTransectionScalarFieldEnum
+    having?: ClaimTransectionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ClaimTransectionCountAggregateInputType | true
+    _avg?: ClaimTransectionAvgAggregateInputType
+    _sum?: ClaimTransectionSumAggregateInputType
+    _min?: ClaimTransectionMinAggregateInputType
+    _max?: ClaimTransectionMaxAggregateInputType
+  }
+
+  export type ClaimTransectionGroupByOutputType = {
+    ClaimTranId: number
+    RefId: string
+    TransactionNo: string
+    HN: string
+    VN: string
+    CreateAt: Date | null
+    _count: ClaimTransectionCountAggregateOutputType | null
+    _avg: ClaimTransectionAvgAggregateOutputType | null
+    _sum: ClaimTransectionSumAggregateOutputType | null
+    _min: ClaimTransectionMinAggregateOutputType | null
+    _max: ClaimTransectionMaxAggregateOutputType | null
+  }
+
+  type GetClaimTransectionGroupByPayload<T extends ClaimTransectionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ClaimTransectionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ClaimTransectionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ClaimTransectionGroupByOutputType[P]>
+            : GetScalarType<T[P], ClaimTransectionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ClaimTransectionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    ClaimTranId?: boolean
+    RefId?: boolean
+    TransactionNo?: boolean
+    HN?: boolean
+    VN?: boolean
+    CreateAt?: boolean
+  }, ExtArgs["result"]["claimTransection"]>
+
+  export type ClaimTransectionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    ClaimTranId?: boolean
+    RefId?: boolean
+    TransactionNo?: boolean
+    HN?: boolean
+    VN?: boolean
+    CreateAt?: boolean
+  }, ExtArgs["result"]["claimTransection"]>
+
+  export type ClaimTransectionSelectScalar = {
+    ClaimTranId?: boolean
+    RefId?: boolean
+    TransactionNo?: boolean
+    HN?: boolean
+    VN?: boolean
+    CreateAt?: boolean
+  }
+
+
+  export type $ClaimTransectionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ClaimTransection"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      ClaimTranId: number
+      RefId: string
+      TransactionNo: string
+      HN: string
+      VN: string
+      CreateAt: Date | null
+    }, ExtArgs["result"]["claimTransection"]>
+    composites: {}
+  }
+
+  type ClaimTransectionGetPayload<S extends boolean | null | undefined | ClaimTransectionDefaultArgs> = $Result.GetResult<Prisma.$ClaimTransectionPayload, S>
+
+  type ClaimTransectionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<ClaimTransectionFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: ClaimTransectionCountAggregateInputType | true
+    }
+
+  export interface ClaimTransectionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ClaimTransection'], meta: { name: 'ClaimTransection' } }
+    /**
+     * Find zero or one ClaimTransection that matches the filter.
+     * @param {ClaimTransectionFindUniqueArgs} args - Arguments to find a ClaimTransection
+     * @example
+     * // Get one ClaimTransection
+     * const claimTransection = await prisma.claimTransection.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ClaimTransectionFindUniqueArgs>(args: SelectSubset<T, ClaimTransectionFindUniqueArgs<ExtArgs>>): Prisma__ClaimTransectionClient<$Result.GetResult<Prisma.$ClaimTransectionPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one ClaimTransection that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {ClaimTransectionFindUniqueOrThrowArgs} args - Arguments to find a ClaimTransection
+     * @example
+     * // Get one ClaimTransection
+     * const claimTransection = await prisma.claimTransection.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ClaimTransectionFindUniqueOrThrowArgs>(args: SelectSubset<T, ClaimTransectionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ClaimTransectionClient<$Result.GetResult<Prisma.$ClaimTransectionPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first ClaimTransection that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClaimTransectionFindFirstArgs} args - Arguments to find a ClaimTransection
+     * @example
+     * // Get one ClaimTransection
+     * const claimTransection = await prisma.claimTransection.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ClaimTransectionFindFirstArgs>(args?: SelectSubset<T, ClaimTransectionFindFirstArgs<ExtArgs>>): Prisma__ClaimTransectionClient<$Result.GetResult<Prisma.$ClaimTransectionPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first ClaimTransection that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClaimTransectionFindFirstOrThrowArgs} args - Arguments to find a ClaimTransection
+     * @example
+     * // Get one ClaimTransection
+     * const claimTransection = await prisma.claimTransection.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ClaimTransectionFindFirstOrThrowArgs>(args?: SelectSubset<T, ClaimTransectionFindFirstOrThrowArgs<ExtArgs>>): Prisma__ClaimTransectionClient<$Result.GetResult<Prisma.$ClaimTransectionPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more ClaimTransections that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClaimTransectionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ClaimTransections
+     * const claimTransections = await prisma.claimTransection.findMany()
+     * 
+     * // Get first 10 ClaimTransections
+     * const claimTransections = await prisma.claimTransection.findMany({ take: 10 })
+     * 
+     * // Only select the `ClaimTranId`
+     * const claimTransectionWithClaimTranIdOnly = await prisma.claimTransection.findMany({ select: { ClaimTranId: true } })
+     * 
+     */
+    findMany<T extends ClaimTransectionFindManyArgs>(args?: SelectSubset<T, ClaimTransectionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ClaimTransectionPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a ClaimTransection.
+     * @param {ClaimTransectionCreateArgs} args - Arguments to create a ClaimTransection.
+     * @example
+     * // Create one ClaimTransection
+     * const ClaimTransection = await prisma.claimTransection.create({
+     *   data: {
+     *     // ... data to create a ClaimTransection
+     *   }
+     * })
+     * 
+     */
+    create<T extends ClaimTransectionCreateArgs>(args: SelectSubset<T, ClaimTransectionCreateArgs<ExtArgs>>): Prisma__ClaimTransectionClient<$Result.GetResult<Prisma.$ClaimTransectionPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many ClaimTransections.
+     * @param {ClaimTransectionCreateManyArgs} args - Arguments to create many ClaimTransections.
+     * @example
+     * // Create many ClaimTransections
+     * const claimTransection = await prisma.claimTransection.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ClaimTransectionCreateManyArgs>(args?: SelectSubset<T, ClaimTransectionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ClaimTransections and returns the data saved in the database.
+     * @param {ClaimTransectionCreateManyAndReturnArgs} args - Arguments to create many ClaimTransections.
+     * @example
+     * // Create many ClaimTransections
+     * const claimTransection = await prisma.claimTransection.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ClaimTransections and only return the `ClaimTranId`
+     * const claimTransectionWithClaimTranIdOnly = await prisma.claimTransection.createManyAndReturn({ 
+     *   select: { ClaimTranId: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ClaimTransectionCreateManyAndReturnArgs>(args?: SelectSubset<T, ClaimTransectionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ClaimTransectionPayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a ClaimTransection.
+     * @param {ClaimTransectionDeleteArgs} args - Arguments to delete one ClaimTransection.
+     * @example
+     * // Delete one ClaimTransection
+     * const ClaimTransection = await prisma.claimTransection.delete({
+     *   where: {
+     *     // ... filter to delete one ClaimTransection
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ClaimTransectionDeleteArgs>(args: SelectSubset<T, ClaimTransectionDeleteArgs<ExtArgs>>): Prisma__ClaimTransectionClient<$Result.GetResult<Prisma.$ClaimTransectionPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one ClaimTransection.
+     * @param {ClaimTransectionUpdateArgs} args - Arguments to update one ClaimTransection.
+     * @example
+     * // Update one ClaimTransection
+     * const claimTransection = await prisma.claimTransection.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ClaimTransectionUpdateArgs>(args: SelectSubset<T, ClaimTransectionUpdateArgs<ExtArgs>>): Prisma__ClaimTransectionClient<$Result.GetResult<Prisma.$ClaimTransectionPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more ClaimTransections.
+     * @param {ClaimTransectionDeleteManyArgs} args - Arguments to filter ClaimTransections to delete.
+     * @example
+     * // Delete a few ClaimTransections
+     * const { count } = await prisma.claimTransection.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ClaimTransectionDeleteManyArgs>(args?: SelectSubset<T, ClaimTransectionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ClaimTransections.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClaimTransectionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ClaimTransections
+     * const claimTransection = await prisma.claimTransection.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ClaimTransectionUpdateManyArgs>(args: SelectSubset<T, ClaimTransectionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one ClaimTransection.
+     * @param {ClaimTransectionUpsertArgs} args - Arguments to update or create a ClaimTransection.
+     * @example
+     * // Update or create a ClaimTransection
+     * const claimTransection = await prisma.claimTransection.upsert({
+     *   create: {
+     *     // ... data to create a ClaimTransection
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ClaimTransection we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ClaimTransectionUpsertArgs>(args: SelectSubset<T, ClaimTransectionUpsertArgs<ExtArgs>>): Prisma__ClaimTransectionClient<$Result.GetResult<Prisma.$ClaimTransectionPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of ClaimTransections.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClaimTransectionCountArgs} args - Arguments to filter ClaimTransections to count.
+     * @example
+     * // Count the number of ClaimTransections
+     * const count = await prisma.claimTransection.count({
+     *   where: {
+     *     // ... the filter for the ClaimTransections we want to count
+     *   }
+     * })
+    **/
+    count<T extends ClaimTransectionCountArgs>(
+      args?: Subset<T, ClaimTransectionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ClaimTransectionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ClaimTransection.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClaimTransectionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ClaimTransectionAggregateArgs>(args: Subset<T, ClaimTransectionAggregateArgs>): Prisma.PrismaPromise<GetClaimTransectionAggregateType<T>>
+
+    /**
+     * Group by ClaimTransection.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClaimTransectionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ClaimTransectionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ClaimTransectionGroupByArgs['orderBy'] }
+        : { orderBy?: ClaimTransectionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ClaimTransectionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetClaimTransectionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ClaimTransection model
+   */
+  readonly fields: ClaimTransectionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ClaimTransection.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ClaimTransectionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ClaimTransection model
+   */ 
+  interface ClaimTransectionFieldRefs {
+    readonly ClaimTranId: FieldRef<"ClaimTransection", 'Int'>
+    readonly RefId: FieldRef<"ClaimTransection", 'String'>
+    readonly TransactionNo: FieldRef<"ClaimTransection", 'String'>
+    readonly HN: FieldRef<"ClaimTransection", 'String'>
+    readonly VN: FieldRef<"ClaimTransection", 'String'>
+    readonly CreateAt: FieldRef<"ClaimTransection", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ClaimTransection findUnique
+   */
+  export type ClaimTransectionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClaimTransection
+     */
+    select?: ClaimTransectionSelect<ExtArgs> | null
+    /**
+     * Filter, which ClaimTransection to fetch.
+     */
+    where: ClaimTransectionWhereUniqueInput
+  }
+
+  /**
+   * ClaimTransection findUniqueOrThrow
+   */
+  export type ClaimTransectionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClaimTransection
+     */
+    select?: ClaimTransectionSelect<ExtArgs> | null
+    /**
+     * Filter, which ClaimTransection to fetch.
+     */
+    where: ClaimTransectionWhereUniqueInput
+  }
+
+  /**
+   * ClaimTransection findFirst
+   */
+  export type ClaimTransectionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClaimTransection
+     */
+    select?: ClaimTransectionSelect<ExtArgs> | null
+    /**
+     * Filter, which ClaimTransection to fetch.
+     */
+    where?: ClaimTransectionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ClaimTransections to fetch.
+     */
+    orderBy?: ClaimTransectionOrderByWithRelationInput | ClaimTransectionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ClaimTransections.
+     */
+    cursor?: ClaimTransectionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ClaimTransections from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ClaimTransections.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ClaimTransections.
+     */
+    distinct?: ClaimTransectionScalarFieldEnum | ClaimTransectionScalarFieldEnum[]
+  }
+
+  /**
+   * ClaimTransection findFirstOrThrow
+   */
+  export type ClaimTransectionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClaimTransection
+     */
+    select?: ClaimTransectionSelect<ExtArgs> | null
+    /**
+     * Filter, which ClaimTransection to fetch.
+     */
+    where?: ClaimTransectionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ClaimTransections to fetch.
+     */
+    orderBy?: ClaimTransectionOrderByWithRelationInput | ClaimTransectionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ClaimTransections.
+     */
+    cursor?: ClaimTransectionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ClaimTransections from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ClaimTransections.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ClaimTransections.
+     */
+    distinct?: ClaimTransectionScalarFieldEnum | ClaimTransectionScalarFieldEnum[]
+  }
+
+  /**
+   * ClaimTransection findMany
+   */
+  export type ClaimTransectionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClaimTransection
+     */
+    select?: ClaimTransectionSelect<ExtArgs> | null
+    /**
+     * Filter, which ClaimTransections to fetch.
+     */
+    where?: ClaimTransectionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ClaimTransections to fetch.
+     */
+    orderBy?: ClaimTransectionOrderByWithRelationInput | ClaimTransectionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ClaimTransections.
+     */
+    cursor?: ClaimTransectionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ClaimTransections from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ClaimTransections.
+     */
+    skip?: number
+    distinct?: ClaimTransectionScalarFieldEnum | ClaimTransectionScalarFieldEnum[]
+  }
+
+  /**
+   * ClaimTransection create
+   */
+  export type ClaimTransectionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClaimTransection
+     */
+    select?: ClaimTransectionSelect<ExtArgs> | null
+    /**
+     * The data needed to create a ClaimTransection.
+     */
+    data: XOR<ClaimTransectionCreateInput, ClaimTransectionUncheckedCreateInput>
+  }
+
+  /**
+   * ClaimTransection createMany
+   */
+  export type ClaimTransectionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ClaimTransections.
+     */
+    data: ClaimTransectionCreateManyInput | ClaimTransectionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ClaimTransection createManyAndReturn
+   */
+  export type ClaimTransectionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClaimTransection
+     */
+    select?: ClaimTransectionSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many ClaimTransections.
+     */
+    data: ClaimTransectionCreateManyInput | ClaimTransectionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ClaimTransection update
+   */
+  export type ClaimTransectionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClaimTransection
+     */
+    select?: ClaimTransectionSelect<ExtArgs> | null
+    /**
+     * The data needed to update a ClaimTransection.
+     */
+    data: XOR<ClaimTransectionUpdateInput, ClaimTransectionUncheckedUpdateInput>
+    /**
+     * Choose, which ClaimTransection to update.
+     */
+    where: ClaimTransectionWhereUniqueInput
+  }
+
+  /**
+   * ClaimTransection updateMany
+   */
+  export type ClaimTransectionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ClaimTransections.
+     */
+    data: XOR<ClaimTransectionUpdateManyMutationInput, ClaimTransectionUncheckedUpdateManyInput>
+    /**
+     * Filter which ClaimTransections to update
+     */
+    where?: ClaimTransectionWhereInput
+  }
+
+  /**
+   * ClaimTransection upsert
+   */
+  export type ClaimTransectionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClaimTransection
+     */
+    select?: ClaimTransectionSelect<ExtArgs> | null
+    /**
+     * The filter to search for the ClaimTransection to update in case it exists.
+     */
+    where: ClaimTransectionWhereUniqueInput
+    /**
+     * In case the ClaimTransection found by the `where` argument doesn't exist, create a new ClaimTransection with this data.
+     */
+    create: XOR<ClaimTransectionCreateInput, ClaimTransectionUncheckedCreateInput>
+    /**
+     * In case the ClaimTransection was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ClaimTransectionUpdateInput, ClaimTransectionUncheckedUpdateInput>
+  }
+
+  /**
+   * ClaimTransection delete
+   */
+  export type ClaimTransectionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClaimTransection
+     */
+    select?: ClaimTransectionSelect<ExtArgs> | null
+    /**
+     * Filter which ClaimTransection to delete.
+     */
+    where: ClaimTransectionWhereUniqueInput
+  }
+
+  /**
+   * ClaimTransection deleteMany
+   */
+  export type ClaimTransectionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ClaimTransections to delete
+     */
+    where?: ClaimTransectionWhereInput
+  }
+
+  /**
+   * ClaimTransection without action
+   */
+  export type ClaimTransectionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClaimTransection
+     */
+    select?: ClaimTransectionSelect<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -3804,6 +4814,18 @@ export namespace Prisma {
   };
 
   export type PolicyTypeScalarFieldEnum = (typeof PolicyTypeScalarFieldEnum)[keyof typeof PolicyTypeScalarFieldEnum]
+
+
+  export const ClaimTransectionScalarFieldEnum: {
+    ClaimTranId: 'ClaimTranId',
+    RefId: 'RefId',
+    TransactionNo: 'TransactionNo',
+    HN: 'HN',
+    VN: 'VN',
+    CreateAt: 'CreateAt'
+  };
+
+  export type ClaimTransectionScalarFieldEnum = (typeof ClaimTransectionScalarFieldEnum)[keyof typeof ClaimTransectionScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -3860,6 +4882,20 @@ export namespace Prisma {
    * Reference to a field of type 'String[]'
    */
   export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'DateTime'
+   */
+  export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+    
+
+
+  /**
+   * Reference to a field of type 'DateTime[]'
+   */
+  export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
     
 
 
@@ -4027,6 +5063,65 @@ export namespace Prisma {
     PolicyTypeDesc?: StringNullableWithAggregatesFilter<"PolicyType"> | string | null
   }
 
+  export type ClaimTransectionWhereInput = {
+    AND?: ClaimTransectionWhereInput | ClaimTransectionWhereInput[]
+    OR?: ClaimTransectionWhereInput[]
+    NOT?: ClaimTransectionWhereInput | ClaimTransectionWhereInput[]
+    ClaimTranId?: IntFilter<"ClaimTransection"> | number
+    RefId?: StringFilter<"ClaimTransection"> | string
+    TransactionNo?: StringFilter<"ClaimTransection"> | string
+    HN?: StringFilter<"ClaimTransection"> | string
+    VN?: StringFilter<"ClaimTransection"> | string
+    CreateAt?: DateTimeNullableFilter<"ClaimTransection"> | Date | string | null
+  }
+
+  export type ClaimTransectionOrderByWithRelationInput = {
+    ClaimTranId?: SortOrder
+    RefId?: SortOrder
+    TransactionNo?: SortOrder
+    HN?: SortOrder
+    VN?: SortOrder
+    CreateAt?: SortOrderInput | SortOrder
+  }
+
+  export type ClaimTransectionWhereUniqueInput = Prisma.AtLeast<{
+    ClaimTranId?: number
+    AND?: ClaimTransectionWhereInput | ClaimTransectionWhereInput[]
+    OR?: ClaimTransectionWhereInput[]
+    NOT?: ClaimTransectionWhereInput | ClaimTransectionWhereInput[]
+    RefId?: StringFilter<"ClaimTransection"> | string
+    TransactionNo?: StringFilter<"ClaimTransection"> | string
+    HN?: StringFilter<"ClaimTransection"> | string
+    VN?: StringFilter<"ClaimTransection"> | string
+    CreateAt?: DateTimeNullableFilter<"ClaimTransection"> | Date | string | null
+  }, "ClaimTranId">
+
+  export type ClaimTransectionOrderByWithAggregationInput = {
+    ClaimTranId?: SortOrder
+    RefId?: SortOrder
+    TransactionNo?: SortOrder
+    HN?: SortOrder
+    VN?: SortOrder
+    CreateAt?: SortOrderInput | SortOrder
+    _count?: ClaimTransectionCountOrderByAggregateInput
+    _avg?: ClaimTransectionAvgOrderByAggregateInput
+    _max?: ClaimTransectionMaxOrderByAggregateInput
+    _min?: ClaimTransectionMinOrderByAggregateInput
+    _sum?: ClaimTransectionSumOrderByAggregateInput
+  }
+
+  export type ClaimTransectionScalarWhereWithAggregatesInput = {
+    AND?: ClaimTransectionScalarWhereWithAggregatesInput | ClaimTransectionScalarWhereWithAggregatesInput[]
+    OR?: ClaimTransectionScalarWhereWithAggregatesInput[]
+    NOT?: ClaimTransectionScalarWhereWithAggregatesInput | ClaimTransectionScalarWhereWithAggregatesInput[]
+    ClaimTranId?: IntWithAggregatesFilter<"ClaimTransection"> | number
+    RefId?: StringWithAggregatesFilter<"ClaimTransection"> | string
+    TransactionNo?: StringWithAggregatesFilter<"ClaimTransection"> | string
+    HN?: StringWithAggregatesFilter<"ClaimTransection"> | string
+    VN?: StringWithAggregatesFilter<"ClaimTransection"> | string
+    CreateAt?: DateTimeNullableWithAggregatesFilter<"ClaimTransection"> | Date | string | null
+  }
+
   export type IllnessSurgeryCreateInput = {
     InsurerCode: number
     ISCode: string
@@ -4163,6 +5258,66 @@ export namespace Prisma {
     InsurerCode?: IntFieldUpdateOperationsInput | number
     PolicyTypeCode?: StringFieldUpdateOperationsInput | string
     PolicyTypeDesc?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type ClaimTransectionCreateInput = {
+    RefId: string
+    TransactionNo: string
+    HN: string
+    VN: string
+    CreateAt?: Date | string | null
+  }
+
+  export type ClaimTransectionUncheckedCreateInput = {
+    ClaimTranId?: number
+    RefId: string
+    TransactionNo: string
+    HN: string
+    VN: string
+    CreateAt?: Date | string | null
+  }
+
+  export type ClaimTransectionUpdateInput = {
+    RefId?: StringFieldUpdateOperationsInput | string
+    TransactionNo?: StringFieldUpdateOperationsInput | string
+    HN?: StringFieldUpdateOperationsInput | string
+    VN?: StringFieldUpdateOperationsInput | string
+    CreateAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type ClaimTransectionUncheckedUpdateInput = {
+    ClaimTranId?: IntFieldUpdateOperationsInput | number
+    RefId?: StringFieldUpdateOperationsInput | string
+    TransactionNo?: StringFieldUpdateOperationsInput | string
+    HN?: StringFieldUpdateOperationsInput | string
+    VN?: StringFieldUpdateOperationsInput | string
+    CreateAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type ClaimTransectionCreateManyInput = {
+    ClaimTranId?: number
+    RefId: string
+    TransactionNo: string
+    HN: string
+    VN: string
+    CreateAt?: Date | string | null
+  }
+
+  export type ClaimTransectionUpdateManyMutationInput = {
+    RefId?: StringFieldUpdateOperationsInput | string
+    TransactionNo?: StringFieldUpdateOperationsInput | string
+    HN?: StringFieldUpdateOperationsInput | string
+    VN?: StringFieldUpdateOperationsInput | string
+    CreateAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type ClaimTransectionUncheckedUpdateManyInput = {
+    ClaimTranId?: IntFieldUpdateOperationsInput | number
+    RefId?: StringFieldUpdateOperationsInput | string
+    TransactionNo?: StringFieldUpdateOperationsInput | string
+    HN?: StringFieldUpdateOperationsInput | string
+    VN?: StringFieldUpdateOperationsInput | string
+    CreateAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -4356,6 +5511,66 @@ export namespace Prisma {
     InsurerCode?: SortOrder
   }
 
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type ClaimTransectionCountOrderByAggregateInput = {
+    ClaimTranId?: SortOrder
+    RefId?: SortOrder
+    TransactionNo?: SortOrder
+    HN?: SortOrder
+    VN?: SortOrder
+    CreateAt?: SortOrder
+  }
+
+  export type ClaimTransectionAvgOrderByAggregateInput = {
+    ClaimTranId?: SortOrder
+  }
+
+  export type ClaimTransectionMaxOrderByAggregateInput = {
+    ClaimTranId?: SortOrder
+    RefId?: SortOrder
+    TransactionNo?: SortOrder
+    HN?: SortOrder
+    VN?: SortOrder
+    CreateAt?: SortOrder
+  }
+
+  export type ClaimTransectionMinOrderByAggregateInput = {
+    ClaimTranId?: SortOrder
+    RefId?: SortOrder
+    TransactionNo?: SortOrder
+    HN?: SortOrder
+    VN?: SortOrder
+    CreateAt?: SortOrder
+  }
+
+  export type ClaimTransectionSumOrderByAggregateInput = {
+    ClaimTranId?: SortOrder
+  }
+
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
   export type IntFieldUpdateOperationsInput = {
     set?: number
     increment?: number
@@ -4370,6 +5585,10 @@ export namespace Prisma {
 
   export type NullableStringFieldUpdateOperationsInput = {
     set?: string | null
+  }
+
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -4483,6 +5702,31 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
 
 
   /**
@@ -4500,6 +5744,10 @@ export namespace Prisma {
      * @deprecated Use PolicyTypeDefaultArgs instead
      */
     export type PolicyTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = PolicyTypeDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use ClaimTransectionDefaultArgs instead
+     */
+    export type ClaimTransectionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ClaimTransectionDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany
