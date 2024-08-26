@@ -6,9 +6,8 @@ import {AccessTokenDTO} from '../dto/aia.dto';
 import axios from 'axios';
 import {HttpService} from '@nestjs/axios'
 import {map,catchError} from 'rxjs'
-import { response } from 'express';
 import { AccessToken } from './dto/create-check-eligible.dto';
-
+// import {encryptor} from 'aes-ecb';
 
 const AIA_APIURL= process.env.AIA_APIURL;
 const API_CONTENTTYPE= process.env.API_CONTENTTYPE;
@@ -60,7 +59,7 @@ return accessTokenAIA;
       const Eligible={
         "RefId": "oljhnklefhbilubsEFJKLb651",
         "Username": "bhcsi025",
-        "HospitalCode": "7IUZR+KTdDTIyiUHvvvAUQ==", //this.EncryptAESECB('11750'),
+        "HospitalCode":  this.EncryptAESECB('11750'),
         "InsurerCode": "13",
         "ElectronicSignature": "",
         "DataJsonType": "3",
@@ -74,7 +73,7 @@ return accessTokenAIA;
           "Patient": {
             "FirstName": "",
             "LastName": "",
-            "Dob": ""
+            "Dob": "111"
           },
           "Visit": {
             "VisitDateTime": "2024-08-01 00:00",
@@ -91,7 +90,7 @@ return accessTokenAIA;
         axios.post(apiURL, {RefId:Eligible.RefId,HospitalCode:Eligible.HospitalCode,InsurerCode:Eligible.InsurerCode,Username:Eligible.Username,DataJsonType:Eligible.DataJsonType, DataJson:Eligible.DataJson }, {
              headers: {
                'Content-Type': 'application/json',
-               'Ocp-Apim-Subscription-Key': '21242855bfee49c0afefea2915f67388',//AIA_APISubscription,
+               'Ocp-Apim-Subscription-Key': AIA_APISubscription,
                'Apim-Auth-Secure-Token': tokenKey
              },
            })
