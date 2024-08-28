@@ -19,4 +19,15 @@ export class UtilsController {
   getpolicyType(@Param('InsuranceCode') InsuranceCode: string ) {
     return  this.utilsService.policyType(InsuranceCode)
   }
+
+  @Get('/serviceSetting/:InsuranceCode')
+  getServiceSetting(@Param('InsuranceCode') InsuranceCode: string ) {
+    return  this.utilsService.ServiceSetting(InsuranceCode)
+  }
+
+  @Get('/accessToken-aia')
+  getAccessTokenAIA( ) {
+    return  this.utilsService.requestAccessToken()
+  }
+  
 }

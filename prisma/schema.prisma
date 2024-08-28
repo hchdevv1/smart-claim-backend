@@ -31,9 +31,30 @@ model PolicyType {
 
 model ClaimTransection {
   ClaimTranId   Int       @id @default(autoincrement())
-  RefId         String
-  TransactionNo String
+  RefId         String    @unique(map: "unique_refid")
+  TransactionNo String    @unique(map: "unique_transactionno")
   HN            String
   VN            String
   CreateAt      DateTime? @default(dbgenerated("(CURRENT_TIMESTAMP AT TIME ZONE 'Asia/Bangkok'::text)")) @db.Timestamptz(6)
+}
+
+model ServiceSetting {
+  id                 Int    @id @default(autoincrement())
+  InsurerCode        Int
+  ServiceSettingCode String
+  ServiceSettingDesc String
+}
+
+model Claimant {
+  id          Int       @id @default(autoincrement())
+  InsurerCode Int
+  PID         String
+  Passport    String?
+  HN          String?
+  FirstName   String?
+  LastName    String?
+  Title       String?
+  CreateAt    DateTime? @default(dbgenerated("(CURRENT_TIMESTAMP AT TIME ZONE 'Asia/Bangkok'::text)")) @db.Timestamptz(6)
+  UpdateAt    DateTime? @default(dbgenerated("(CURRENT_TIMESTAMP AT TIME ZONE 'Asia/Bangkok'::text)")) @db.Timestamptz(6)
+  Active      Boolean
 }

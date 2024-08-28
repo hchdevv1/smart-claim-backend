@@ -33,6 +33,16 @@ export type PolicyType = $Result.DefaultSelection<Prisma.$PolicyTypePayload>
  * 
  */
 export type ClaimTransection = $Result.DefaultSelection<Prisma.$ClaimTransectionPayload>
+/**
+ * Model ServiceSetting
+ * 
+ */
+export type ServiceSetting = $Result.DefaultSelection<Prisma.$ServiceSettingPayload>
+/**
+ * Model Claimant
+ * 
+ */
+export type Claimant = $Result.DefaultSelection<Prisma.$ClaimantPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -195,6 +205,26 @@ export class PrismaClient<
     * ```
     */
   get claimTransection(): Prisma.ClaimTransectionDelegate<ExtArgs>;
+
+  /**
+   * `prisma.serviceSetting`: Exposes CRUD operations for the **ServiceSetting** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ServiceSettings
+    * const serviceSettings = await prisma.serviceSetting.findMany()
+    * ```
+    */
+  get serviceSetting(): Prisma.ServiceSettingDelegate<ExtArgs>;
+
+  /**
+   * `prisma.claimant`: Exposes CRUD operations for the **Claimant** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Claimants
+    * const claimants = await prisma.claimant.findMany()
+    * ```
+    */
+  get claimant(): Prisma.ClaimantDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -675,7 +705,9 @@ export namespace Prisma {
     IllnessSurgery: 'IllnessSurgery',
     IllnessType: 'IllnessType',
     PolicyType: 'PolicyType',
-    ClaimTransection: 'ClaimTransection'
+    ClaimTransection: 'ClaimTransection',
+    ServiceSetting: 'ServiceSetting',
+    Claimant: 'Claimant'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -691,7 +723,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "illnessSurgery" | "illnessType" | "policyType" | "claimTransection"
+      modelProps: "illnessSurgery" | "illnessType" | "policyType" | "claimTransection" | "serviceSetting" | "claimant"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -972,6 +1004,146 @@ export namespace Prisma {
           count: {
             args: Prisma.ClaimTransectionCountArgs<ExtArgs>
             result: $Utils.Optional<ClaimTransectionCountAggregateOutputType> | number
+          }
+        }
+      }
+      ServiceSetting: {
+        payload: Prisma.$ServiceSettingPayload<ExtArgs>
+        fields: Prisma.ServiceSettingFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ServiceSettingFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceSettingPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ServiceSettingFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceSettingPayload>
+          }
+          findFirst: {
+            args: Prisma.ServiceSettingFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceSettingPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ServiceSettingFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceSettingPayload>
+          }
+          findMany: {
+            args: Prisma.ServiceSettingFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceSettingPayload>[]
+          }
+          create: {
+            args: Prisma.ServiceSettingCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceSettingPayload>
+          }
+          createMany: {
+            args: Prisma.ServiceSettingCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ServiceSettingCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceSettingPayload>[]
+          }
+          delete: {
+            args: Prisma.ServiceSettingDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceSettingPayload>
+          }
+          update: {
+            args: Prisma.ServiceSettingUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceSettingPayload>
+          }
+          deleteMany: {
+            args: Prisma.ServiceSettingDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ServiceSettingUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.ServiceSettingUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServiceSettingPayload>
+          }
+          aggregate: {
+            args: Prisma.ServiceSettingAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateServiceSetting>
+          }
+          groupBy: {
+            args: Prisma.ServiceSettingGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ServiceSettingGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ServiceSettingCountArgs<ExtArgs>
+            result: $Utils.Optional<ServiceSettingCountAggregateOutputType> | number
+          }
+        }
+      }
+      Claimant: {
+        payload: Prisma.$ClaimantPayload<ExtArgs>
+        fields: Prisma.ClaimantFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ClaimantFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClaimantPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ClaimantFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClaimantPayload>
+          }
+          findFirst: {
+            args: Prisma.ClaimantFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClaimantPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ClaimantFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClaimantPayload>
+          }
+          findMany: {
+            args: Prisma.ClaimantFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClaimantPayload>[]
+          }
+          create: {
+            args: Prisma.ClaimantCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClaimantPayload>
+          }
+          createMany: {
+            args: Prisma.ClaimantCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ClaimantCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClaimantPayload>[]
+          }
+          delete: {
+            args: Prisma.ClaimantDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClaimantPayload>
+          }
+          update: {
+            args: Prisma.ClaimantUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClaimantPayload>
+          }
+          deleteMany: {
+            args: Prisma.ClaimantDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ClaimantUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.ClaimantUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClaimantPayload>
+          }
+          aggregate: {
+            args: Prisma.ClaimantAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateClaimant>
+          }
+          groupBy: {
+            args: Prisma.ClaimantGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ClaimantGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ClaimantCountArgs<ExtArgs>
+            result: $Utils.Optional<ClaimantCountAggregateOutputType> | number
           }
         }
       }
@@ -4773,6 +4945,1898 @@ export namespace Prisma {
 
 
   /**
+   * Model ServiceSetting
+   */
+
+  export type AggregateServiceSetting = {
+    _count: ServiceSettingCountAggregateOutputType | null
+    _avg: ServiceSettingAvgAggregateOutputType | null
+    _sum: ServiceSettingSumAggregateOutputType | null
+    _min: ServiceSettingMinAggregateOutputType | null
+    _max: ServiceSettingMaxAggregateOutputType | null
+  }
+
+  export type ServiceSettingAvgAggregateOutputType = {
+    id: number | null
+    InsurerCode: number | null
+  }
+
+  export type ServiceSettingSumAggregateOutputType = {
+    id: number | null
+    InsurerCode: number | null
+  }
+
+  export type ServiceSettingMinAggregateOutputType = {
+    id: number | null
+    InsurerCode: number | null
+    ServiceSettingCode: string | null
+    ServiceSettingDesc: string | null
+  }
+
+  export type ServiceSettingMaxAggregateOutputType = {
+    id: number | null
+    InsurerCode: number | null
+    ServiceSettingCode: string | null
+    ServiceSettingDesc: string | null
+  }
+
+  export type ServiceSettingCountAggregateOutputType = {
+    id: number
+    InsurerCode: number
+    ServiceSettingCode: number
+    ServiceSettingDesc: number
+    _all: number
+  }
+
+
+  export type ServiceSettingAvgAggregateInputType = {
+    id?: true
+    InsurerCode?: true
+  }
+
+  export type ServiceSettingSumAggregateInputType = {
+    id?: true
+    InsurerCode?: true
+  }
+
+  export type ServiceSettingMinAggregateInputType = {
+    id?: true
+    InsurerCode?: true
+    ServiceSettingCode?: true
+    ServiceSettingDesc?: true
+  }
+
+  export type ServiceSettingMaxAggregateInputType = {
+    id?: true
+    InsurerCode?: true
+    ServiceSettingCode?: true
+    ServiceSettingDesc?: true
+  }
+
+  export type ServiceSettingCountAggregateInputType = {
+    id?: true
+    InsurerCode?: true
+    ServiceSettingCode?: true
+    ServiceSettingDesc?: true
+    _all?: true
+  }
+
+  export type ServiceSettingAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ServiceSetting to aggregate.
+     */
+    where?: ServiceSettingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ServiceSettings to fetch.
+     */
+    orderBy?: ServiceSettingOrderByWithRelationInput | ServiceSettingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ServiceSettingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ServiceSettings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ServiceSettings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ServiceSettings
+    **/
+    _count?: true | ServiceSettingCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ServiceSettingAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ServiceSettingSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ServiceSettingMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ServiceSettingMaxAggregateInputType
+  }
+
+  export type GetServiceSettingAggregateType<T extends ServiceSettingAggregateArgs> = {
+        [P in keyof T & keyof AggregateServiceSetting]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateServiceSetting[P]>
+      : GetScalarType<T[P], AggregateServiceSetting[P]>
+  }
+
+
+
+
+  export type ServiceSettingGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ServiceSettingWhereInput
+    orderBy?: ServiceSettingOrderByWithAggregationInput | ServiceSettingOrderByWithAggregationInput[]
+    by: ServiceSettingScalarFieldEnum[] | ServiceSettingScalarFieldEnum
+    having?: ServiceSettingScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ServiceSettingCountAggregateInputType | true
+    _avg?: ServiceSettingAvgAggregateInputType
+    _sum?: ServiceSettingSumAggregateInputType
+    _min?: ServiceSettingMinAggregateInputType
+    _max?: ServiceSettingMaxAggregateInputType
+  }
+
+  export type ServiceSettingGroupByOutputType = {
+    id: number
+    InsurerCode: number
+    ServiceSettingCode: string
+    ServiceSettingDesc: string
+    _count: ServiceSettingCountAggregateOutputType | null
+    _avg: ServiceSettingAvgAggregateOutputType | null
+    _sum: ServiceSettingSumAggregateOutputType | null
+    _min: ServiceSettingMinAggregateOutputType | null
+    _max: ServiceSettingMaxAggregateOutputType | null
+  }
+
+  type GetServiceSettingGroupByPayload<T extends ServiceSettingGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ServiceSettingGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ServiceSettingGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ServiceSettingGroupByOutputType[P]>
+            : GetScalarType<T[P], ServiceSettingGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ServiceSettingSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    InsurerCode?: boolean
+    ServiceSettingCode?: boolean
+    ServiceSettingDesc?: boolean
+  }, ExtArgs["result"]["serviceSetting"]>
+
+  export type ServiceSettingSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    InsurerCode?: boolean
+    ServiceSettingCode?: boolean
+    ServiceSettingDesc?: boolean
+  }, ExtArgs["result"]["serviceSetting"]>
+
+  export type ServiceSettingSelectScalar = {
+    id?: boolean
+    InsurerCode?: boolean
+    ServiceSettingCode?: boolean
+    ServiceSettingDesc?: boolean
+  }
+
+
+  export type $ServiceSettingPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ServiceSetting"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      InsurerCode: number
+      ServiceSettingCode: string
+      ServiceSettingDesc: string
+    }, ExtArgs["result"]["serviceSetting"]>
+    composites: {}
+  }
+
+  type ServiceSettingGetPayload<S extends boolean | null | undefined | ServiceSettingDefaultArgs> = $Result.GetResult<Prisma.$ServiceSettingPayload, S>
+
+  type ServiceSettingCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<ServiceSettingFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: ServiceSettingCountAggregateInputType | true
+    }
+
+  export interface ServiceSettingDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ServiceSetting'], meta: { name: 'ServiceSetting' } }
+    /**
+     * Find zero or one ServiceSetting that matches the filter.
+     * @param {ServiceSettingFindUniqueArgs} args - Arguments to find a ServiceSetting
+     * @example
+     * // Get one ServiceSetting
+     * const serviceSetting = await prisma.serviceSetting.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ServiceSettingFindUniqueArgs>(args: SelectSubset<T, ServiceSettingFindUniqueArgs<ExtArgs>>): Prisma__ServiceSettingClient<$Result.GetResult<Prisma.$ServiceSettingPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one ServiceSetting that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {ServiceSettingFindUniqueOrThrowArgs} args - Arguments to find a ServiceSetting
+     * @example
+     * // Get one ServiceSetting
+     * const serviceSetting = await prisma.serviceSetting.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ServiceSettingFindUniqueOrThrowArgs>(args: SelectSubset<T, ServiceSettingFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ServiceSettingClient<$Result.GetResult<Prisma.$ServiceSettingPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first ServiceSetting that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServiceSettingFindFirstArgs} args - Arguments to find a ServiceSetting
+     * @example
+     * // Get one ServiceSetting
+     * const serviceSetting = await prisma.serviceSetting.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ServiceSettingFindFirstArgs>(args?: SelectSubset<T, ServiceSettingFindFirstArgs<ExtArgs>>): Prisma__ServiceSettingClient<$Result.GetResult<Prisma.$ServiceSettingPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first ServiceSetting that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServiceSettingFindFirstOrThrowArgs} args - Arguments to find a ServiceSetting
+     * @example
+     * // Get one ServiceSetting
+     * const serviceSetting = await prisma.serviceSetting.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ServiceSettingFindFirstOrThrowArgs>(args?: SelectSubset<T, ServiceSettingFindFirstOrThrowArgs<ExtArgs>>): Prisma__ServiceSettingClient<$Result.GetResult<Prisma.$ServiceSettingPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more ServiceSettings that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServiceSettingFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ServiceSettings
+     * const serviceSettings = await prisma.serviceSetting.findMany()
+     * 
+     * // Get first 10 ServiceSettings
+     * const serviceSettings = await prisma.serviceSetting.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const serviceSettingWithIdOnly = await prisma.serviceSetting.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ServiceSettingFindManyArgs>(args?: SelectSubset<T, ServiceSettingFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ServiceSettingPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a ServiceSetting.
+     * @param {ServiceSettingCreateArgs} args - Arguments to create a ServiceSetting.
+     * @example
+     * // Create one ServiceSetting
+     * const ServiceSetting = await prisma.serviceSetting.create({
+     *   data: {
+     *     // ... data to create a ServiceSetting
+     *   }
+     * })
+     * 
+     */
+    create<T extends ServiceSettingCreateArgs>(args: SelectSubset<T, ServiceSettingCreateArgs<ExtArgs>>): Prisma__ServiceSettingClient<$Result.GetResult<Prisma.$ServiceSettingPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many ServiceSettings.
+     * @param {ServiceSettingCreateManyArgs} args - Arguments to create many ServiceSettings.
+     * @example
+     * // Create many ServiceSettings
+     * const serviceSetting = await prisma.serviceSetting.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ServiceSettingCreateManyArgs>(args?: SelectSubset<T, ServiceSettingCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ServiceSettings and returns the data saved in the database.
+     * @param {ServiceSettingCreateManyAndReturnArgs} args - Arguments to create many ServiceSettings.
+     * @example
+     * // Create many ServiceSettings
+     * const serviceSetting = await prisma.serviceSetting.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ServiceSettings and only return the `id`
+     * const serviceSettingWithIdOnly = await prisma.serviceSetting.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ServiceSettingCreateManyAndReturnArgs>(args?: SelectSubset<T, ServiceSettingCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ServiceSettingPayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a ServiceSetting.
+     * @param {ServiceSettingDeleteArgs} args - Arguments to delete one ServiceSetting.
+     * @example
+     * // Delete one ServiceSetting
+     * const ServiceSetting = await prisma.serviceSetting.delete({
+     *   where: {
+     *     // ... filter to delete one ServiceSetting
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ServiceSettingDeleteArgs>(args: SelectSubset<T, ServiceSettingDeleteArgs<ExtArgs>>): Prisma__ServiceSettingClient<$Result.GetResult<Prisma.$ServiceSettingPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one ServiceSetting.
+     * @param {ServiceSettingUpdateArgs} args - Arguments to update one ServiceSetting.
+     * @example
+     * // Update one ServiceSetting
+     * const serviceSetting = await prisma.serviceSetting.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ServiceSettingUpdateArgs>(args: SelectSubset<T, ServiceSettingUpdateArgs<ExtArgs>>): Prisma__ServiceSettingClient<$Result.GetResult<Prisma.$ServiceSettingPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more ServiceSettings.
+     * @param {ServiceSettingDeleteManyArgs} args - Arguments to filter ServiceSettings to delete.
+     * @example
+     * // Delete a few ServiceSettings
+     * const { count } = await prisma.serviceSetting.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ServiceSettingDeleteManyArgs>(args?: SelectSubset<T, ServiceSettingDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ServiceSettings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServiceSettingUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ServiceSettings
+     * const serviceSetting = await prisma.serviceSetting.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ServiceSettingUpdateManyArgs>(args: SelectSubset<T, ServiceSettingUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one ServiceSetting.
+     * @param {ServiceSettingUpsertArgs} args - Arguments to update or create a ServiceSetting.
+     * @example
+     * // Update or create a ServiceSetting
+     * const serviceSetting = await prisma.serviceSetting.upsert({
+     *   create: {
+     *     // ... data to create a ServiceSetting
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ServiceSetting we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ServiceSettingUpsertArgs>(args: SelectSubset<T, ServiceSettingUpsertArgs<ExtArgs>>): Prisma__ServiceSettingClient<$Result.GetResult<Prisma.$ServiceSettingPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of ServiceSettings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServiceSettingCountArgs} args - Arguments to filter ServiceSettings to count.
+     * @example
+     * // Count the number of ServiceSettings
+     * const count = await prisma.serviceSetting.count({
+     *   where: {
+     *     // ... the filter for the ServiceSettings we want to count
+     *   }
+     * })
+    **/
+    count<T extends ServiceSettingCountArgs>(
+      args?: Subset<T, ServiceSettingCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ServiceSettingCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ServiceSetting.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServiceSettingAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ServiceSettingAggregateArgs>(args: Subset<T, ServiceSettingAggregateArgs>): Prisma.PrismaPromise<GetServiceSettingAggregateType<T>>
+
+    /**
+     * Group by ServiceSetting.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServiceSettingGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ServiceSettingGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ServiceSettingGroupByArgs['orderBy'] }
+        : { orderBy?: ServiceSettingGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ServiceSettingGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetServiceSettingGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ServiceSetting model
+   */
+  readonly fields: ServiceSettingFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ServiceSetting.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ServiceSettingClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ServiceSetting model
+   */ 
+  interface ServiceSettingFieldRefs {
+    readonly id: FieldRef<"ServiceSetting", 'Int'>
+    readonly InsurerCode: FieldRef<"ServiceSetting", 'Int'>
+    readonly ServiceSettingCode: FieldRef<"ServiceSetting", 'String'>
+    readonly ServiceSettingDesc: FieldRef<"ServiceSetting", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ServiceSetting findUnique
+   */
+  export type ServiceSettingFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceSetting
+     */
+    select?: ServiceSettingSelect<ExtArgs> | null
+    /**
+     * Filter, which ServiceSetting to fetch.
+     */
+    where: ServiceSettingWhereUniqueInput
+  }
+
+  /**
+   * ServiceSetting findUniqueOrThrow
+   */
+  export type ServiceSettingFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceSetting
+     */
+    select?: ServiceSettingSelect<ExtArgs> | null
+    /**
+     * Filter, which ServiceSetting to fetch.
+     */
+    where: ServiceSettingWhereUniqueInput
+  }
+
+  /**
+   * ServiceSetting findFirst
+   */
+  export type ServiceSettingFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceSetting
+     */
+    select?: ServiceSettingSelect<ExtArgs> | null
+    /**
+     * Filter, which ServiceSetting to fetch.
+     */
+    where?: ServiceSettingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ServiceSettings to fetch.
+     */
+    orderBy?: ServiceSettingOrderByWithRelationInput | ServiceSettingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ServiceSettings.
+     */
+    cursor?: ServiceSettingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ServiceSettings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ServiceSettings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ServiceSettings.
+     */
+    distinct?: ServiceSettingScalarFieldEnum | ServiceSettingScalarFieldEnum[]
+  }
+
+  /**
+   * ServiceSetting findFirstOrThrow
+   */
+  export type ServiceSettingFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceSetting
+     */
+    select?: ServiceSettingSelect<ExtArgs> | null
+    /**
+     * Filter, which ServiceSetting to fetch.
+     */
+    where?: ServiceSettingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ServiceSettings to fetch.
+     */
+    orderBy?: ServiceSettingOrderByWithRelationInput | ServiceSettingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ServiceSettings.
+     */
+    cursor?: ServiceSettingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ServiceSettings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ServiceSettings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ServiceSettings.
+     */
+    distinct?: ServiceSettingScalarFieldEnum | ServiceSettingScalarFieldEnum[]
+  }
+
+  /**
+   * ServiceSetting findMany
+   */
+  export type ServiceSettingFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceSetting
+     */
+    select?: ServiceSettingSelect<ExtArgs> | null
+    /**
+     * Filter, which ServiceSettings to fetch.
+     */
+    where?: ServiceSettingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ServiceSettings to fetch.
+     */
+    orderBy?: ServiceSettingOrderByWithRelationInput | ServiceSettingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ServiceSettings.
+     */
+    cursor?: ServiceSettingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ServiceSettings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ServiceSettings.
+     */
+    skip?: number
+    distinct?: ServiceSettingScalarFieldEnum | ServiceSettingScalarFieldEnum[]
+  }
+
+  /**
+   * ServiceSetting create
+   */
+  export type ServiceSettingCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceSetting
+     */
+    select?: ServiceSettingSelect<ExtArgs> | null
+    /**
+     * The data needed to create a ServiceSetting.
+     */
+    data: XOR<ServiceSettingCreateInput, ServiceSettingUncheckedCreateInput>
+  }
+
+  /**
+   * ServiceSetting createMany
+   */
+  export type ServiceSettingCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ServiceSettings.
+     */
+    data: ServiceSettingCreateManyInput | ServiceSettingCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ServiceSetting createManyAndReturn
+   */
+  export type ServiceSettingCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceSetting
+     */
+    select?: ServiceSettingSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many ServiceSettings.
+     */
+    data: ServiceSettingCreateManyInput | ServiceSettingCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ServiceSetting update
+   */
+  export type ServiceSettingUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceSetting
+     */
+    select?: ServiceSettingSelect<ExtArgs> | null
+    /**
+     * The data needed to update a ServiceSetting.
+     */
+    data: XOR<ServiceSettingUpdateInput, ServiceSettingUncheckedUpdateInput>
+    /**
+     * Choose, which ServiceSetting to update.
+     */
+    where: ServiceSettingWhereUniqueInput
+  }
+
+  /**
+   * ServiceSetting updateMany
+   */
+  export type ServiceSettingUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ServiceSettings.
+     */
+    data: XOR<ServiceSettingUpdateManyMutationInput, ServiceSettingUncheckedUpdateManyInput>
+    /**
+     * Filter which ServiceSettings to update
+     */
+    where?: ServiceSettingWhereInput
+  }
+
+  /**
+   * ServiceSetting upsert
+   */
+  export type ServiceSettingUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceSetting
+     */
+    select?: ServiceSettingSelect<ExtArgs> | null
+    /**
+     * The filter to search for the ServiceSetting to update in case it exists.
+     */
+    where: ServiceSettingWhereUniqueInput
+    /**
+     * In case the ServiceSetting found by the `where` argument doesn't exist, create a new ServiceSetting with this data.
+     */
+    create: XOR<ServiceSettingCreateInput, ServiceSettingUncheckedCreateInput>
+    /**
+     * In case the ServiceSetting was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ServiceSettingUpdateInput, ServiceSettingUncheckedUpdateInput>
+  }
+
+  /**
+   * ServiceSetting delete
+   */
+  export type ServiceSettingDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceSetting
+     */
+    select?: ServiceSettingSelect<ExtArgs> | null
+    /**
+     * Filter which ServiceSetting to delete.
+     */
+    where: ServiceSettingWhereUniqueInput
+  }
+
+  /**
+   * ServiceSetting deleteMany
+   */
+  export type ServiceSettingDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ServiceSettings to delete
+     */
+    where?: ServiceSettingWhereInput
+  }
+
+  /**
+   * ServiceSetting without action
+   */
+  export type ServiceSettingDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceSetting
+     */
+    select?: ServiceSettingSelect<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Claimant
+   */
+
+  export type AggregateClaimant = {
+    _count: ClaimantCountAggregateOutputType | null
+    _avg: ClaimantAvgAggregateOutputType | null
+    _sum: ClaimantSumAggregateOutputType | null
+    _min: ClaimantMinAggregateOutputType | null
+    _max: ClaimantMaxAggregateOutputType | null
+  }
+
+  export type ClaimantAvgAggregateOutputType = {
+    id: number | null
+    InsurerCode: number | null
+  }
+
+  export type ClaimantSumAggregateOutputType = {
+    id: number | null
+    InsurerCode: number | null
+  }
+
+  export type ClaimantMinAggregateOutputType = {
+    id: number | null
+    InsurerCode: number | null
+    PID: string | null
+    Passport: string | null
+    HN: string | null
+    FirstName: string | null
+    LastName: string | null
+    Title: string | null
+    CreateAt: Date | null
+    UpdateAt: Date | null
+    Active: boolean | null
+  }
+
+  export type ClaimantMaxAggregateOutputType = {
+    id: number | null
+    InsurerCode: number | null
+    PID: string | null
+    Passport: string | null
+    HN: string | null
+    FirstName: string | null
+    LastName: string | null
+    Title: string | null
+    CreateAt: Date | null
+    UpdateAt: Date | null
+    Active: boolean | null
+  }
+
+  export type ClaimantCountAggregateOutputType = {
+    id: number
+    InsurerCode: number
+    PID: number
+    Passport: number
+    HN: number
+    FirstName: number
+    LastName: number
+    Title: number
+    CreateAt: number
+    UpdateAt: number
+    Active: number
+    _all: number
+  }
+
+
+  export type ClaimantAvgAggregateInputType = {
+    id?: true
+    InsurerCode?: true
+  }
+
+  export type ClaimantSumAggregateInputType = {
+    id?: true
+    InsurerCode?: true
+  }
+
+  export type ClaimantMinAggregateInputType = {
+    id?: true
+    InsurerCode?: true
+    PID?: true
+    Passport?: true
+    HN?: true
+    FirstName?: true
+    LastName?: true
+    Title?: true
+    CreateAt?: true
+    UpdateAt?: true
+    Active?: true
+  }
+
+  export type ClaimantMaxAggregateInputType = {
+    id?: true
+    InsurerCode?: true
+    PID?: true
+    Passport?: true
+    HN?: true
+    FirstName?: true
+    LastName?: true
+    Title?: true
+    CreateAt?: true
+    UpdateAt?: true
+    Active?: true
+  }
+
+  export type ClaimantCountAggregateInputType = {
+    id?: true
+    InsurerCode?: true
+    PID?: true
+    Passport?: true
+    HN?: true
+    FirstName?: true
+    LastName?: true
+    Title?: true
+    CreateAt?: true
+    UpdateAt?: true
+    Active?: true
+    _all?: true
+  }
+
+  export type ClaimantAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Claimant to aggregate.
+     */
+    where?: ClaimantWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Claimants to fetch.
+     */
+    orderBy?: ClaimantOrderByWithRelationInput | ClaimantOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ClaimantWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Claimants from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Claimants.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Claimants
+    **/
+    _count?: true | ClaimantCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ClaimantAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ClaimantSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ClaimantMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ClaimantMaxAggregateInputType
+  }
+
+  export type GetClaimantAggregateType<T extends ClaimantAggregateArgs> = {
+        [P in keyof T & keyof AggregateClaimant]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateClaimant[P]>
+      : GetScalarType<T[P], AggregateClaimant[P]>
+  }
+
+
+
+
+  export type ClaimantGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ClaimantWhereInput
+    orderBy?: ClaimantOrderByWithAggregationInput | ClaimantOrderByWithAggregationInput[]
+    by: ClaimantScalarFieldEnum[] | ClaimantScalarFieldEnum
+    having?: ClaimantScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ClaimantCountAggregateInputType | true
+    _avg?: ClaimantAvgAggregateInputType
+    _sum?: ClaimantSumAggregateInputType
+    _min?: ClaimantMinAggregateInputType
+    _max?: ClaimantMaxAggregateInputType
+  }
+
+  export type ClaimantGroupByOutputType = {
+    id: number
+    InsurerCode: number
+    PID: string
+    Passport: string | null
+    HN: string | null
+    FirstName: string | null
+    LastName: string | null
+    Title: string | null
+    CreateAt: Date | null
+    UpdateAt: Date | null
+    Active: boolean
+    _count: ClaimantCountAggregateOutputType | null
+    _avg: ClaimantAvgAggregateOutputType | null
+    _sum: ClaimantSumAggregateOutputType | null
+    _min: ClaimantMinAggregateOutputType | null
+    _max: ClaimantMaxAggregateOutputType | null
+  }
+
+  type GetClaimantGroupByPayload<T extends ClaimantGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ClaimantGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ClaimantGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ClaimantGroupByOutputType[P]>
+            : GetScalarType<T[P], ClaimantGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ClaimantSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    InsurerCode?: boolean
+    PID?: boolean
+    Passport?: boolean
+    HN?: boolean
+    FirstName?: boolean
+    LastName?: boolean
+    Title?: boolean
+    CreateAt?: boolean
+    UpdateAt?: boolean
+    Active?: boolean
+  }, ExtArgs["result"]["claimant"]>
+
+  export type ClaimantSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    InsurerCode?: boolean
+    PID?: boolean
+    Passport?: boolean
+    HN?: boolean
+    FirstName?: boolean
+    LastName?: boolean
+    Title?: boolean
+    CreateAt?: boolean
+    UpdateAt?: boolean
+    Active?: boolean
+  }, ExtArgs["result"]["claimant"]>
+
+  export type ClaimantSelectScalar = {
+    id?: boolean
+    InsurerCode?: boolean
+    PID?: boolean
+    Passport?: boolean
+    HN?: boolean
+    FirstName?: boolean
+    LastName?: boolean
+    Title?: boolean
+    CreateAt?: boolean
+    UpdateAt?: boolean
+    Active?: boolean
+  }
+
+
+  export type $ClaimantPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Claimant"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      InsurerCode: number
+      PID: string
+      Passport: string | null
+      HN: string | null
+      FirstName: string | null
+      LastName: string | null
+      Title: string | null
+      CreateAt: Date | null
+      UpdateAt: Date | null
+      Active: boolean
+    }, ExtArgs["result"]["claimant"]>
+    composites: {}
+  }
+
+  type ClaimantGetPayload<S extends boolean | null | undefined | ClaimantDefaultArgs> = $Result.GetResult<Prisma.$ClaimantPayload, S>
+
+  type ClaimantCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<ClaimantFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: ClaimantCountAggregateInputType | true
+    }
+
+  export interface ClaimantDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Claimant'], meta: { name: 'Claimant' } }
+    /**
+     * Find zero or one Claimant that matches the filter.
+     * @param {ClaimantFindUniqueArgs} args - Arguments to find a Claimant
+     * @example
+     * // Get one Claimant
+     * const claimant = await prisma.claimant.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ClaimantFindUniqueArgs>(args: SelectSubset<T, ClaimantFindUniqueArgs<ExtArgs>>): Prisma__ClaimantClient<$Result.GetResult<Prisma.$ClaimantPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one Claimant that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {ClaimantFindUniqueOrThrowArgs} args - Arguments to find a Claimant
+     * @example
+     * // Get one Claimant
+     * const claimant = await prisma.claimant.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ClaimantFindUniqueOrThrowArgs>(args: SelectSubset<T, ClaimantFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ClaimantClient<$Result.GetResult<Prisma.$ClaimantPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first Claimant that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClaimantFindFirstArgs} args - Arguments to find a Claimant
+     * @example
+     * // Get one Claimant
+     * const claimant = await prisma.claimant.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ClaimantFindFirstArgs>(args?: SelectSubset<T, ClaimantFindFirstArgs<ExtArgs>>): Prisma__ClaimantClient<$Result.GetResult<Prisma.$ClaimantPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first Claimant that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClaimantFindFirstOrThrowArgs} args - Arguments to find a Claimant
+     * @example
+     * // Get one Claimant
+     * const claimant = await prisma.claimant.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ClaimantFindFirstOrThrowArgs>(args?: SelectSubset<T, ClaimantFindFirstOrThrowArgs<ExtArgs>>): Prisma__ClaimantClient<$Result.GetResult<Prisma.$ClaimantPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more Claimants that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClaimantFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Claimants
+     * const claimants = await prisma.claimant.findMany()
+     * 
+     * // Get first 10 Claimants
+     * const claimants = await prisma.claimant.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const claimantWithIdOnly = await prisma.claimant.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ClaimantFindManyArgs>(args?: SelectSubset<T, ClaimantFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ClaimantPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a Claimant.
+     * @param {ClaimantCreateArgs} args - Arguments to create a Claimant.
+     * @example
+     * // Create one Claimant
+     * const Claimant = await prisma.claimant.create({
+     *   data: {
+     *     // ... data to create a Claimant
+     *   }
+     * })
+     * 
+     */
+    create<T extends ClaimantCreateArgs>(args: SelectSubset<T, ClaimantCreateArgs<ExtArgs>>): Prisma__ClaimantClient<$Result.GetResult<Prisma.$ClaimantPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many Claimants.
+     * @param {ClaimantCreateManyArgs} args - Arguments to create many Claimants.
+     * @example
+     * // Create many Claimants
+     * const claimant = await prisma.claimant.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ClaimantCreateManyArgs>(args?: SelectSubset<T, ClaimantCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Claimants and returns the data saved in the database.
+     * @param {ClaimantCreateManyAndReturnArgs} args - Arguments to create many Claimants.
+     * @example
+     * // Create many Claimants
+     * const claimant = await prisma.claimant.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Claimants and only return the `id`
+     * const claimantWithIdOnly = await prisma.claimant.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ClaimantCreateManyAndReturnArgs>(args?: SelectSubset<T, ClaimantCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ClaimantPayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a Claimant.
+     * @param {ClaimantDeleteArgs} args - Arguments to delete one Claimant.
+     * @example
+     * // Delete one Claimant
+     * const Claimant = await prisma.claimant.delete({
+     *   where: {
+     *     // ... filter to delete one Claimant
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ClaimantDeleteArgs>(args: SelectSubset<T, ClaimantDeleteArgs<ExtArgs>>): Prisma__ClaimantClient<$Result.GetResult<Prisma.$ClaimantPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one Claimant.
+     * @param {ClaimantUpdateArgs} args - Arguments to update one Claimant.
+     * @example
+     * // Update one Claimant
+     * const claimant = await prisma.claimant.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ClaimantUpdateArgs>(args: SelectSubset<T, ClaimantUpdateArgs<ExtArgs>>): Prisma__ClaimantClient<$Result.GetResult<Prisma.$ClaimantPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more Claimants.
+     * @param {ClaimantDeleteManyArgs} args - Arguments to filter Claimants to delete.
+     * @example
+     * // Delete a few Claimants
+     * const { count } = await prisma.claimant.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ClaimantDeleteManyArgs>(args?: SelectSubset<T, ClaimantDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Claimants.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClaimantUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Claimants
+     * const claimant = await prisma.claimant.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ClaimantUpdateManyArgs>(args: SelectSubset<T, ClaimantUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Claimant.
+     * @param {ClaimantUpsertArgs} args - Arguments to update or create a Claimant.
+     * @example
+     * // Update or create a Claimant
+     * const claimant = await prisma.claimant.upsert({
+     *   create: {
+     *     // ... data to create a Claimant
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Claimant we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ClaimantUpsertArgs>(args: SelectSubset<T, ClaimantUpsertArgs<ExtArgs>>): Prisma__ClaimantClient<$Result.GetResult<Prisma.$ClaimantPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of Claimants.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClaimantCountArgs} args - Arguments to filter Claimants to count.
+     * @example
+     * // Count the number of Claimants
+     * const count = await prisma.claimant.count({
+     *   where: {
+     *     // ... the filter for the Claimants we want to count
+     *   }
+     * })
+    **/
+    count<T extends ClaimantCountArgs>(
+      args?: Subset<T, ClaimantCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ClaimantCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Claimant.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClaimantAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ClaimantAggregateArgs>(args: Subset<T, ClaimantAggregateArgs>): Prisma.PrismaPromise<GetClaimantAggregateType<T>>
+
+    /**
+     * Group by Claimant.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClaimantGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ClaimantGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ClaimantGroupByArgs['orderBy'] }
+        : { orderBy?: ClaimantGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ClaimantGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetClaimantGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Claimant model
+   */
+  readonly fields: ClaimantFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Claimant.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ClaimantClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Claimant model
+   */ 
+  interface ClaimantFieldRefs {
+    readonly id: FieldRef<"Claimant", 'Int'>
+    readonly InsurerCode: FieldRef<"Claimant", 'Int'>
+    readonly PID: FieldRef<"Claimant", 'String'>
+    readonly Passport: FieldRef<"Claimant", 'String'>
+    readonly HN: FieldRef<"Claimant", 'String'>
+    readonly FirstName: FieldRef<"Claimant", 'String'>
+    readonly LastName: FieldRef<"Claimant", 'String'>
+    readonly Title: FieldRef<"Claimant", 'String'>
+    readonly CreateAt: FieldRef<"Claimant", 'DateTime'>
+    readonly UpdateAt: FieldRef<"Claimant", 'DateTime'>
+    readonly Active: FieldRef<"Claimant", 'Boolean'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Claimant findUnique
+   */
+  export type ClaimantFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Claimant
+     */
+    select?: ClaimantSelect<ExtArgs> | null
+    /**
+     * Filter, which Claimant to fetch.
+     */
+    where: ClaimantWhereUniqueInput
+  }
+
+  /**
+   * Claimant findUniqueOrThrow
+   */
+  export type ClaimantFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Claimant
+     */
+    select?: ClaimantSelect<ExtArgs> | null
+    /**
+     * Filter, which Claimant to fetch.
+     */
+    where: ClaimantWhereUniqueInput
+  }
+
+  /**
+   * Claimant findFirst
+   */
+  export type ClaimantFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Claimant
+     */
+    select?: ClaimantSelect<ExtArgs> | null
+    /**
+     * Filter, which Claimant to fetch.
+     */
+    where?: ClaimantWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Claimants to fetch.
+     */
+    orderBy?: ClaimantOrderByWithRelationInput | ClaimantOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Claimants.
+     */
+    cursor?: ClaimantWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Claimants from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Claimants.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Claimants.
+     */
+    distinct?: ClaimantScalarFieldEnum | ClaimantScalarFieldEnum[]
+  }
+
+  /**
+   * Claimant findFirstOrThrow
+   */
+  export type ClaimantFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Claimant
+     */
+    select?: ClaimantSelect<ExtArgs> | null
+    /**
+     * Filter, which Claimant to fetch.
+     */
+    where?: ClaimantWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Claimants to fetch.
+     */
+    orderBy?: ClaimantOrderByWithRelationInput | ClaimantOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Claimants.
+     */
+    cursor?: ClaimantWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Claimants from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Claimants.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Claimants.
+     */
+    distinct?: ClaimantScalarFieldEnum | ClaimantScalarFieldEnum[]
+  }
+
+  /**
+   * Claimant findMany
+   */
+  export type ClaimantFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Claimant
+     */
+    select?: ClaimantSelect<ExtArgs> | null
+    /**
+     * Filter, which Claimants to fetch.
+     */
+    where?: ClaimantWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Claimants to fetch.
+     */
+    orderBy?: ClaimantOrderByWithRelationInput | ClaimantOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Claimants.
+     */
+    cursor?: ClaimantWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Claimants from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Claimants.
+     */
+    skip?: number
+    distinct?: ClaimantScalarFieldEnum | ClaimantScalarFieldEnum[]
+  }
+
+  /**
+   * Claimant create
+   */
+  export type ClaimantCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Claimant
+     */
+    select?: ClaimantSelect<ExtArgs> | null
+    /**
+     * The data needed to create a Claimant.
+     */
+    data: XOR<ClaimantCreateInput, ClaimantUncheckedCreateInput>
+  }
+
+  /**
+   * Claimant createMany
+   */
+  export type ClaimantCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Claimants.
+     */
+    data: ClaimantCreateManyInput | ClaimantCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Claimant createManyAndReturn
+   */
+  export type ClaimantCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Claimant
+     */
+    select?: ClaimantSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many Claimants.
+     */
+    data: ClaimantCreateManyInput | ClaimantCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Claimant update
+   */
+  export type ClaimantUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Claimant
+     */
+    select?: ClaimantSelect<ExtArgs> | null
+    /**
+     * The data needed to update a Claimant.
+     */
+    data: XOR<ClaimantUpdateInput, ClaimantUncheckedUpdateInput>
+    /**
+     * Choose, which Claimant to update.
+     */
+    where: ClaimantWhereUniqueInput
+  }
+
+  /**
+   * Claimant updateMany
+   */
+  export type ClaimantUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Claimants.
+     */
+    data: XOR<ClaimantUpdateManyMutationInput, ClaimantUncheckedUpdateManyInput>
+    /**
+     * Filter which Claimants to update
+     */
+    where?: ClaimantWhereInput
+  }
+
+  /**
+   * Claimant upsert
+   */
+  export type ClaimantUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Claimant
+     */
+    select?: ClaimantSelect<ExtArgs> | null
+    /**
+     * The filter to search for the Claimant to update in case it exists.
+     */
+    where: ClaimantWhereUniqueInput
+    /**
+     * In case the Claimant found by the `where` argument doesn't exist, create a new Claimant with this data.
+     */
+    create: XOR<ClaimantCreateInput, ClaimantUncheckedCreateInput>
+    /**
+     * In case the Claimant was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ClaimantUpdateInput, ClaimantUncheckedUpdateInput>
+  }
+
+  /**
+   * Claimant delete
+   */
+  export type ClaimantDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Claimant
+     */
+    select?: ClaimantSelect<ExtArgs> | null
+    /**
+     * Filter which Claimant to delete.
+     */
+    where: ClaimantWhereUniqueInput
+  }
+
+  /**
+   * Claimant deleteMany
+   */
+  export type ClaimantDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Claimants to delete
+     */
+    where?: ClaimantWhereInput
+  }
+
+  /**
+   * Claimant without action
+   */
+  export type ClaimantDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Claimant
+     */
+    select?: ClaimantSelect<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -4826,6 +6890,33 @@ export namespace Prisma {
   };
 
   export type ClaimTransectionScalarFieldEnum = (typeof ClaimTransectionScalarFieldEnum)[keyof typeof ClaimTransectionScalarFieldEnum]
+
+
+  export const ServiceSettingScalarFieldEnum: {
+    id: 'id',
+    InsurerCode: 'InsurerCode',
+    ServiceSettingCode: 'ServiceSettingCode',
+    ServiceSettingDesc: 'ServiceSettingDesc'
+  };
+
+  export type ServiceSettingScalarFieldEnum = (typeof ServiceSettingScalarFieldEnum)[keyof typeof ServiceSettingScalarFieldEnum]
+
+
+  export const ClaimantScalarFieldEnum: {
+    id: 'id',
+    InsurerCode: 'InsurerCode',
+    PID: 'PID',
+    Passport: 'Passport',
+    HN: 'HN',
+    FirstName: 'FirstName',
+    LastName: 'LastName',
+    Title: 'Title',
+    CreateAt: 'CreateAt',
+    UpdateAt: 'UpdateAt',
+    Active: 'Active'
+  };
+
+  export type ClaimantScalarFieldEnum = (typeof ClaimantScalarFieldEnum)[keyof typeof ClaimantScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -4896,6 +6987,13 @@ export namespace Prisma {
    * Reference to a field of type 'DateTime[]'
    */
   export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
@@ -5086,15 +7184,15 @@ export namespace Prisma {
 
   export type ClaimTransectionWhereUniqueInput = Prisma.AtLeast<{
     ClaimTranId?: number
+    RefId?: string
+    TransactionNo?: string
     AND?: ClaimTransectionWhereInput | ClaimTransectionWhereInput[]
     OR?: ClaimTransectionWhereInput[]
     NOT?: ClaimTransectionWhereInput | ClaimTransectionWhereInput[]
-    RefId?: StringFilter<"ClaimTransection"> | string
-    TransactionNo?: StringFilter<"ClaimTransection"> | string
     HN?: StringFilter<"ClaimTransection"> | string
     VN?: StringFilter<"ClaimTransection"> | string
     CreateAt?: DateTimeNullableFilter<"ClaimTransection"> | Date | string | null
-  }, "ClaimTranId">
+  }, "ClaimTranId" | "RefId" | "TransactionNo">
 
   export type ClaimTransectionOrderByWithAggregationInput = {
     ClaimTranId?: SortOrder
@@ -5120,6 +7218,139 @@ export namespace Prisma {
     HN?: StringWithAggregatesFilter<"ClaimTransection"> | string
     VN?: StringWithAggregatesFilter<"ClaimTransection"> | string
     CreateAt?: DateTimeNullableWithAggregatesFilter<"ClaimTransection"> | Date | string | null
+  }
+
+  export type ServiceSettingWhereInput = {
+    AND?: ServiceSettingWhereInput | ServiceSettingWhereInput[]
+    OR?: ServiceSettingWhereInput[]
+    NOT?: ServiceSettingWhereInput | ServiceSettingWhereInput[]
+    id?: IntFilter<"ServiceSetting"> | number
+    InsurerCode?: IntFilter<"ServiceSetting"> | number
+    ServiceSettingCode?: StringFilter<"ServiceSetting"> | string
+    ServiceSettingDesc?: StringFilter<"ServiceSetting"> | string
+  }
+
+  export type ServiceSettingOrderByWithRelationInput = {
+    id?: SortOrder
+    InsurerCode?: SortOrder
+    ServiceSettingCode?: SortOrder
+    ServiceSettingDesc?: SortOrder
+  }
+
+  export type ServiceSettingWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: ServiceSettingWhereInput | ServiceSettingWhereInput[]
+    OR?: ServiceSettingWhereInput[]
+    NOT?: ServiceSettingWhereInput | ServiceSettingWhereInput[]
+    InsurerCode?: IntFilter<"ServiceSetting"> | number
+    ServiceSettingCode?: StringFilter<"ServiceSetting"> | string
+    ServiceSettingDesc?: StringFilter<"ServiceSetting"> | string
+  }, "id">
+
+  export type ServiceSettingOrderByWithAggregationInput = {
+    id?: SortOrder
+    InsurerCode?: SortOrder
+    ServiceSettingCode?: SortOrder
+    ServiceSettingDesc?: SortOrder
+    _count?: ServiceSettingCountOrderByAggregateInput
+    _avg?: ServiceSettingAvgOrderByAggregateInput
+    _max?: ServiceSettingMaxOrderByAggregateInput
+    _min?: ServiceSettingMinOrderByAggregateInput
+    _sum?: ServiceSettingSumOrderByAggregateInput
+  }
+
+  export type ServiceSettingScalarWhereWithAggregatesInput = {
+    AND?: ServiceSettingScalarWhereWithAggregatesInput | ServiceSettingScalarWhereWithAggregatesInput[]
+    OR?: ServiceSettingScalarWhereWithAggregatesInput[]
+    NOT?: ServiceSettingScalarWhereWithAggregatesInput | ServiceSettingScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"ServiceSetting"> | number
+    InsurerCode?: IntWithAggregatesFilter<"ServiceSetting"> | number
+    ServiceSettingCode?: StringWithAggregatesFilter<"ServiceSetting"> | string
+    ServiceSettingDesc?: StringWithAggregatesFilter<"ServiceSetting"> | string
+  }
+
+  export type ClaimantWhereInput = {
+    AND?: ClaimantWhereInput | ClaimantWhereInput[]
+    OR?: ClaimantWhereInput[]
+    NOT?: ClaimantWhereInput | ClaimantWhereInput[]
+    id?: IntFilter<"Claimant"> | number
+    InsurerCode?: IntFilter<"Claimant"> | number
+    PID?: StringFilter<"Claimant"> | string
+    Passport?: StringNullableFilter<"Claimant"> | string | null
+    HN?: StringNullableFilter<"Claimant"> | string | null
+    FirstName?: StringNullableFilter<"Claimant"> | string | null
+    LastName?: StringNullableFilter<"Claimant"> | string | null
+    Title?: StringNullableFilter<"Claimant"> | string | null
+    CreateAt?: DateTimeNullableFilter<"Claimant"> | Date | string | null
+    UpdateAt?: DateTimeNullableFilter<"Claimant"> | Date | string | null
+    Active?: BoolFilter<"Claimant"> | boolean
+  }
+
+  export type ClaimantOrderByWithRelationInput = {
+    id?: SortOrder
+    InsurerCode?: SortOrder
+    PID?: SortOrder
+    Passport?: SortOrderInput | SortOrder
+    HN?: SortOrderInput | SortOrder
+    FirstName?: SortOrderInput | SortOrder
+    LastName?: SortOrderInput | SortOrder
+    Title?: SortOrderInput | SortOrder
+    CreateAt?: SortOrderInput | SortOrder
+    UpdateAt?: SortOrderInput | SortOrder
+    Active?: SortOrder
+  }
+
+  export type ClaimantWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: ClaimantWhereInput | ClaimantWhereInput[]
+    OR?: ClaimantWhereInput[]
+    NOT?: ClaimantWhereInput | ClaimantWhereInput[]
+    InsurerCode?: IntFilter<"Claimant"> | number
+    PID?: StringFilter<"Claimant"> | string
+    Passport?: StringNullableFilter<"Claimant"> | string | null
+    HN?: StringNullableFilter<"Claimant"> | string | null
+    FirstName?: StringNullableFilter<"Claimant"> | string | null
+    LastName?: StringNullableFilter<"Claimant"> | string | null
+    Title?: StringNullableFilter<"Claimant"> | string | null
+    CreateAt?: DateTimeNullableFilter<"Claimant"> | Date | string | null
+    UpdateAt?: DateTimeNullableFilter<"Claimant"> | Date | string | null
+    Active?: BoolFilter<"Claimant"> | boolean
+  }, "id">
+
+  export type ClaimantOrderByWithAggregationInput = {
+    id?: SortOrder
+    InsurerCode?: SortOrder
+    PID?: SortOrder
+    Passport?: SortOrderInput | SortOrder
+    HN?: SortOrderInput | SortOrder
+    FirstName?: SortOrderInput | SortOrder
+    LastName?: SortOrderInput | SortOrder
+    Title?: SortOrderInput | SortOrder
+    CreateAt?: SortOrderInput | SortOrder
+    UpdateAt?: SortOrderInput | SortOrder
+    Active?: SortOrder
+    _count?: ClaimantCountOrderByAggregateInput
+    _avg?: ClaimantAvgOrderByAggregateInput
+    _max?: ClaimantMaxOrderByAggregateInput
+    _min?: ClaimantMinOrderByAggregateInput
+    _sum?: ClaimantSumOrderByAggregateInput
+  }
+
+  export type ClaimantScalarWhereWithAggregatesInput = {
+    AND?: ClaimantScalarWhereWithAggregatesInput | ClaimantScalarWhereWithAggregatesInput[]
+    OR?: ClaimantScalarWhereWithAggregatesInput[]
+    NOT?: ClaimantScalarWhereWithAggregatesInput | ClaimantScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Claimant"> | number
+    InsurerCode?: IntWithAggregatesFilter<"Claimant"> | number
+    PID?: StringWithAggregatesFilter<"Claimant"> | string
+    Passport?: StringNullableWithAggregatesFilter<"Claimant"> | string | null
+    HN?: StringNullableWithAggregatesFilter<"Claimant"> | string | null
+    FirstName?: StringNullableWithAggregatesFilter<"Claimant"> | string | null
+    LastName?: StringNullableWithAggregatesFilter<"Claimant"> | string | null
+    Title?: StringNullableWithAggregatesFilter<"Claimant"> | string | null
+    CreateAt?: DateTimeNullableWithAggregatesFilter<"Claimant"> | Date | string | null
+    UpdateAt?: DateTimeNullableWithAggregatesFilter<"Claimant"> | Date | string | null
+    Active?: BoolWithAggregatesFilter<"Claimant"> | boolean
   }
 
   export type IllnessSurgeryCreateInput = {
@@ -5318,6 +7549,147 @@ export namespace Prisma {
     HN?: StringFieldUpdateOperationsInput | string
     VN?: StringFieldUpdateOperationsInput | string
     CreateAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type ServiceSettingCreateInput = {
+    InsurerCode: number
+    ServiceSettingCode: string
+    ServiceSettingDesc: string
+  }
+
+  export type ServiceSettingUncheckedCreateInput = {
+    id?: number
+    InsurerCode: number
+    ServiceSettingCode: string
+    ServiceSettingDesc: string
+  }
+
+  export type ServiceSettingUpdateInput = {
+    InsurerCode?: IntFieldUpdateOperationsInput | number
+    ServiceSettingCode?: StringFieldUpdateOperationsInput | string
+    ServiceSettingDesc?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ServiceSettingUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    InsurerCode?: IntFieldUpdateOperationsInput | number
+    ServiceSettingCode?: StringFieldUpdateOperationsInput | string
+    ServiceSettingDesc?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ServiceSettingCreateManyInput = {
+    id?: number
+    InsurerCode: number
+    ServiceSettingCode: string
+    ServiceSettingDesc: string
+  }
+
+  export type ServiceSettingUpdateManyMutationInput = {
+    InsurerCode?: IntFieldUpdateOperationsInput | number
+    ServiceSettingCode?: StringFieldUpdateOperationsInput | string
+    ServiceSettingDesc?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ServiceSettingUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    InsurerCode?: IntFieldUpdateOperationsInput | number
+    ServiceSettingCode?: StringFieldUpdateOperationsInput | string
+    ServiceSettingDesc?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ClaimantCreateInput = {
+    InsurerCode: number
+    PID: string
+    Passport?: string | null
+    HN?: string | null
+    FirstName?: string | null
+    LastName?: string | null
+    Title?: string | null
+    CreateAt?: Date | string | null
+    UpdateAt?: Date | string | null
+    Active: boolean
+  }
+
+  export type ClaimantUncheckedCreateInput = {
+    id?: number
+    InsurerCode: number
+    PID: string
+    Passport?: string | null
+    HN?: string | null
+    FirstName?: string | null
+    LastName?: string | null
+    Title?: string | null
+    CreateAt?: Date | string | null
+    UpdateAt?: Date | string | null
+    Active: boolean
+  }
+
+  export type ClaimantUpdateInput = {
+    InsurerCode?: IntFieldUpdateOperationsInput | number
+    PID?: StringFieldUpdateOperationsInput | string
+    Passport?: NullableStringFieldUpdateOperationsInput | string | null
+    HN?: NullableStringFieldUpdateOperationsInput | string | null
+    FirstName?: NullableStringFieldUpdateOperationsInput | string | null
+    LastName?: NullableStringFieldUpdateOperationsInput | string | null
+    Title?: NullableStringFieldUpdateOperationsInput | string | null
+    CreateAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    UpdateAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    Active?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type ClaimantUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    InsurerCode?: IntFieldUpdateOperationsInput | number
+    PID?: StringFieldUpdateOperationsInput | string
+    Passport?: NullableStringFieldUpdateOperationsInput | string | null
+    HN?: NullableStringFieldUpdateOperationsInput | string | null
+    FirstName?: NullableStringFieldUpdateOperationsInput | string | null
+    LastName?: NullableStringFieldUpdateOperationsInput | string | null
+    Title?: NullableStringFieldUpdateOperationsInput | string | null
+    CreateAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    UpdateAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    Active?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type ClaimantCreateManyInput = {
+    id?: number
+    InsurerCode: number
+    PID: string
+    Passport?: string | null
+    HN?: string | null
+    FirstName?: string | null
+    LastName?: string | null
+    Title?: string | null
+    CreateAt?: Date | string | null
+    UpdateAt?: Date | string | null
+    Active: boolean
+  }
+
+  export type ClaimantUpdateManyMutationInput = {
+    InsurerCode?: IntFieldUpdateOperationsInput | number
+    PID?: StringFieldUpdateOperationsInput | string
+    Passport?: NullableStringFieldUpdateOperationsInput | string | null
+    HN?: NullableStringFieldUpdateOperationsInput | string | null
+    FirstName?: NullableStringFieldUpdateOperationsInput | string | null
+    LastName?: NullableStringFieldUpdateOperationsInput | string | null
+    Title?: NullableStringFieldUpdateOperationsInput | string | null
+    CreateAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    UpdateAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    Active?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type ClaimantUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    InsurerCode?: IntFieldUpdateOperationsInput | number
+    PID?: StringFieldUpdateOperationsInput | string
+    Passport?: NullableStringFieldUpdateOperationsInput | string | null
+    HN?: NullableStringFieldUpdateOperationsInput | string | null
+    FirstName?: NullableStringFieldUpdateOperationsInput | string | null
+    LastName?: NullableStringFieldUpdateOperationsInput | string | null
+    Title?: NullableStringFieldUpdateOperationsInput | string | null
+    CreateAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    UpdateAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    Active?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -5571,6 +7943,102 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
+  export type ServiceSettingCountOrderByAggregateInput = {
+    id?: SortOrder
+    InsurerCode?: SortOrder
+    ServiceSettingCode?: SortOrder
+    ServiceSettingDesc?: SortOrder
+  }
+
+  export type ServiceSettingAvgOrderByAggregateInput = {
+    id?: SortOrder
+    InsurerCode?: SortOrder
+  }
+
+  export type ServiceSettingMaxOrderByAggregateInput = {
+    id?: SortOrder
+    InsurerCode?: SortOrder
+    ServiceSettingCode?: SortOrder
+    ServiceSettingDesc?: SortOrder
+  }
+
+  export type ServiceSettingMinOrderByAggregateInput = {
+    id?: SortOrder
+    InsurerCode?: SortOrder
+    ServiceSettingCode?: SortOrder
+    ServiceSettingDesc?: SortOrder
+  }
+
+  export type ServiceSettingSumOrderByAggregateInput = {
+    id?: SortOrder
+    InsurerCode?: SortOrder
+  }
+
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type ClaimantCountOrderByAggregateInput = {
+    id?: SortOrder
+    InsurerCode?: SortOrder
+    PID?: SortOrder
+    Passport?: SortOrder
+    HN?: SortOrder
+    FirstName?: SortOrder
+    LastName?: SortOrder
+    Title?: SortOrder
+    CreateAt?: SortOrder
+    UpdateAt?: SortOrder
+    Active?: SortOrder
+  }
+
+  export type ClaimantAvgOrderByAggregateInput = {
+    id?: SortOrder
+    InsurerCode?: SortOrder
+  }
+
+  export type ClaimantMaxOrderByAggregateInput = {
+    id?: SortOrder
+    InsurerCode?: SortOrder
+    PID?: SortOrder
+    Passport?: SortOrder
+    HN?: SortOrder
+    FirstName?: SortOrder
+    LastName?: SortOrder
+    Title?: SortOrder
+    CreateAt?: SortOrder
+    UpdateAt?: SortOrder
+    Active?: SortOrder
+  }
+
+  export type ClaimantMinOrderByAggregateInput = {
+    id?: SortOrder
+    InsurerCode?: SortOrder
+    PID?: SortOrder
+    Passport?: SortOrder
+    HN?: SortOrder
+    FirstName?: SortOrder
+    LastName?: SortOrder
+    Title?: SortOrder
+    CreateAt?: SortOrder
+    UpdateAt?: SortOrder
+    Active?: SortOrder
+  }
+
+  export type ClaimantSumOrderByAggregateInput = {
+    id?: SortOrder
+    InsurerCode?: SortOrder
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
   export type IntFieldUpdateOperationsInput = {
     set?: number
     increment?: number
@@ -5589,6 +8057,10 @@ export namespace Prisma {
 
   export type NullableDateTimeFieldUpdateOperationsInput = {
     set?: Date | string | null
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -5727,6 +8199,19 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
 
 
   /**
@@ -5748,6 +8233,14 @@ export namespace Prisma {
      * @deprecated Use ClaimTransectionDefaultArgs instead
      */
     export type ClaimTransectionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ClaimTransectionDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use ServiceSettingDefaultArgs instead
+     */
+    export type ServiceSettingArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ServiceSettingDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use ClaimantDefaultArgs instead
+     */
+    export type ClaimantArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ClaimantDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany

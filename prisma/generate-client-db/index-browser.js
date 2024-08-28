@@ -149,6 +149,27 @@ exports.Prisma.ClaimTransectionScalarFieldEnum = {
   CreateAt: 'CreateAt'
 };
 
+exports.Prisma.ServiceSettingScalarFieldEnum = {
+  id: 'id',
+  InsurerCode: 'InsurerCode',
+  ServiceSettingCode: 'ServiceSettingCode',
+  ServiceSettingDesc: 'ServiceSettingDesc'
+};
+
+exports.Prisma.ClaimantScalarFieldEnum = {
+  id: 'id',
+  InsurerCode: 'InsurerCode',
+  PID: 'PID',
+  Passport: 'Passport',
+  HN: 'HN',
+  FirstName: 'FirstName',
+  LastName: 'LastName',
+  Title: 'Title',
+  CreateAt: 'CreateAt',
+  UpdateAt: 'UpdateAt',
+  Active: 'Active'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -169,7 +190,9 @@ exports.Prisma.ModelName = {
   IllnessSurgery: 'IllnessSurgery',
   IllnessType: 'IllnessType',
   PolicyType: 'PolicyType',
-  ClaimTransection: 'ClaimTransection'
+  ClaimTransection: 'ClaimTransection',
+  ServiceSetting: 'ServiceSetting',
+  Claimant: 'Claimant'
 };
 
 /**
