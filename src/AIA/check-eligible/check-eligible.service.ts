@@ -9,7 +9,7 @@ import { checkeligibleDto} from './dto/check-eligibleAIA.dto'
 import { checkEligibleHCHDto } from './dto/check-eligibleHCH.dto'
 import { prismaProgest } from '../../database/database'
 import { UtilsService } from '../../utilities/utils/utils.service'
-
+import { ReplyCheckEligibleHCHDto } from './dto/reply-check-eligibleHCH.dto'
 
 //import { AccessTokenAIA } from '../../utilities/utils/dto/accessToken'
 //import  aesEcb  from 'aes-ecb';
@@ -18,6 +18,8 @@ const AIA_APIURL= process.env.AIA_APIURL;
 //const API_CONTENTTYPE= process.env.API_CONTENTTYPE;
 //const AIA_APISecretkey = process.env.AIA_APISecretkey
 const AIA_APISubscription = process.env.AIA_APISubscription
+const AIA_APIHopitalUsername = process.env.AIA_APIHopitalUsername
+const AIA_HospitalCode = process.env.AIA_HospitalCode
 // const AIA_APIMUserId = process.env.AIA_APIMUserId
 // const AIA_APIMAppId = [process.env.AIA_APIMAppId]
 
@@ -55,62 +57,145 @@ export class CheckEligibleService {
 
 
  async checkEligible(CheckEligibleHCHDto:checkEligibleHCHDto){
+ let TransactionNo:string ;
+ const ObjAccessToken = Utils.requestAccessToken();
+ const AccessTokenKey =  (await ObjAccessToken).tokenKey;
+ const IdType =CheckEligibleHCHDto.DataJson.IdType;
+ const PID =CheckEligibleHCHDto.DataJson.PID;
+ const InsuranceCode =CheckEligibleHCHDto.DataJson.InsuranceCode;
+ const PolicyTypeCode =CheckEligibleHCHDto.DataJson.PolicyTypeCode;
+ const ServiceSettingCode =CheckEligibleHCHDto.DataJson.ServiceSettingCode;
+ const IllnessTypeCode =CheckEligibleHCHDto.DataJson.IllnessTypeCode;
+ const SurgeryTypeCode =CheckEligibleHCHDto.DataJson.SurgeryTypeCode;
+ const HN  =CheckEligibleHCHDto.DataJson.Patient.HN;
+ const VN  =CheckEligibleHCHDto.DataJson.Visit.VN;
+ const FirstName = CheckEligibleHCHDto.DataJson.Patient.FirstName
+ const LastName =CheckEligibleHCHDto.DataJson.Patient.LastName
+ const DOB =CheckEligibleHCHDto.DataJson.Patient.Dob
+ const RefIdHCH =VN.replace("-","")+'-'+InsuranceCode+'-'+PolicyTypeCode+'-'+ServiceSettingCode
+ const RefIdHCHEncrypt  =Utils.EncryptAESECB(RefIdHCH);
   
- 
-  const ObjAccessToken = Utils.requestAccessToken();
-  const AccessTokenKey =  (await ObjAccessToken).tokenKey;
-  //console.log(AccessTokenKey);
-  const ency = Utils.EncryptAESECB('11750');
-  //console.log(ency);
-
-  //const newCheckeligibleDto =new checkEligibleHCHDto()
- //newCheckeligibleDto.RefId
-  const HN  =CheckEligibleHCHDto.DataJson.Patient.HN;
-  const VN  =CheckEligibleHCHDto.DataJson.Visit.VN;
-  const PolicyTypeCode =CheckEligibleHCHDto.DataJson.PolicyTypeCode;
-  const ServiceSettingCode =CheckEligibleHCHDto.DataJson.ServiceSettingCode;
-
-  const RefIdHCH =VN.replace("-","")+'-'+PolicyTypeCode+'-'+ServiceSettingCode
-  console.log(RefIdHCH);
-  const RefIdHCHEncrypt  =Utils.EncryptAESECB(RefIdHCH);
-
   //const resultx =await prismaProgest.claimTransection.findUnique({ where: {RefId: `${RefIdHCHEncrypt}`);
-    const resultx = await prismaProgest.claimTransection.findUnique({
+     const  resultx = await prismaProgest.claimTransection.findUnique({
       where: {
         RefId: `${RefIdHCHEncrypt}`,
       },
     })
-//const rrr =await prismaProgest.$queryRaw`select RefId from ClaimTransection where ClaimTranId ='1000'`;
-
-//const email = 1000
-//const resultx = await prismaProgest.$queryRaw(Prisma.sql` SELECT HN FROM ClaimTransection WHERE ClaimTranId = ${email}`)
-console.log(resultx)
+    console.log(RefIdHCHEncrypt)
+    // this.http
+    // .get(`http://10.10.17.92:52773/HCHIntraAPI/GetVisitDateTime/${VN}`)
+    // .pipe(
+    //   map((res) => res.data?.EpisodeInfo),
+    //   map((EpisodeInfo)=>{return EpisodeInfo})
+  
+    // )
+    // .pipe(
+    //   catchError(() => {
+    //     throw new ForbiddenException('API not available');
+    //   }),
+    // );
+    const response = await axios.get(`http://10.10.17.92:52773/HCHIntraAPI/GetVisitDateTime/${VN}`);
+    const VisitDateTime = response.data.EpisodeInfo.VisitDateTime;
+    const AccidentDate = response.data.EpisodeInfo.AccidentDate;
+    //console.log(res);
     if (resultx ==null){ 
       const Data2 = {
-
-        RefId: RefIdHCHEncrypt,
-        TransactionNo:'',
-        HN: HN,
-        VN:VN
+          RefId: RefIdHCHEncrypt,
+          TransactionNo:RefIdHCHEncrypt,
+          HN: HN,
+          VN:VN,
       }
-      await prismaProgest.claimTransection.create({
-        data: Data2
-    }); 
-
-  //   await prismaProgest.claimTransection.update({
-  //     data: Data2,
-  //     where: {ClaimTranId: 1007}
-  // }); 
-
+  
       console.log('NNNNNN')
-    }
+    }else{
+      console.log(DOB)
+   let newCheckeligibleDto =new checkeligibleDto();
+      newCheckeligibleDto={
+      RefId: RefIdHCHEncrypt,
+      Username: AIA_APIHopitalUsername,
+      HospitalCode: Utils.EncryptAESECB(AIA_HospitalCode),
+      InsurerCode: InsuranceCode,
+      ElectronicSignature: "",
+      DataJsonType: "3",
+      DataJson: {
+        IdType: "POLICY_NUMBER", //IdType,
+        Id:  "1BsXcyE+m60+FYgKjjQTmQ==", //Utils.EncryptAESECB(PID),
+        PolicyType: PolicyTypeCode,
+        ServiceSetting: ServiceSettingCode,
+        IllnessType: IllnessTypeCode,
+        SurgeryType: SurgeryTypeCode,
+        Patient: {
+          FirstName:Utils.EncryptAESECB(FirstName),  
+          LastName:Utils.EncryptAESECB(LastName), 
+          Dob: Utils.EncryptAESECB(DOB),
+          },
+          Visit: {
+            VisitDateTime: VisitDateTime ,
+            AccidentDate: AccidentDate
+          }
+        }
+      }
+      const apiURL= `${AIA_APIURL}/SmartClaim/checkEligible`;
+      await axios.post(apiURL, {RefId:newCheckeligibleDto.RefId,
+          HospitalCode:newCheckeligibleDto.HospitalCode,InsurerCode:newCheckeligibleDto.InsurerCode,Username:newCheckeligibleDto.Username,DataJsonType:newCheckeligibleDto.DataJsonType, DataJson:newCheckeligibleDto.DataJson }, {
+             headers: {
+               'Content-Type': 'application/json',
+               'Ocp-Apim-Subscription-Key': AIA_APISubscription,
+               'Apim-Auth-Secure-Token': AccessTokenKey
+             },
+           })
+           .then((response) => {
+             TransactionNo =response.data.Data.TransactionNo
+         
+       
+         // console.log(response.data);
+           // console.log(response.status);
+       
+            response.data.Data.CoverageList.forEach((item, index) => {
+             //ResponecheckEligible =item
+            // console.log(`Value at position ${index}:`, item);
+           // console.log(response.data.Data.CoverageList[index].Type)
+            //console.log(response.data.Data.CoverageList[index].Status)
+          //  console.log(response.data.Data.CoverageList[index].MessageList)
+           });
+          // console.log(response.data.Data.TransactionNo)
+           
+           })
+           .catch((error) => {
+            console.error('Error:', error);
+           })
+           .finally(() => {
+           console.log('---- finally');
+           });
+          }
+          if (TransactionNo !==null) {
+            const Data2 = {  TransactionNo: TransactionNo }
+             await prismaProgest.claimTransection.update({
+              data: Data2, where: {RefId: RefIdHCHEncrypt}
+          }); 
+          }
+  
+ const newReplyCheckEligibleHCHDto = new ReplyCheckEligibleHCHDto();
+ newReplyCheckEligibleHCHDto.CustomerDetail ={
+  PolicyNo: 'string;',
+  MemberShipId: 'string;',
+  FirstName: 'string;',
+  LastName: 'string;',
+  NationalId: 'string;'
+ }
+
+ newReplyCheckEligibleHCHDto.Result ={
+  Code :'111',
+  Message: 'strin',
+  MessageTh: 'string'
+ }
+
+//  let newCheckeligibleDto =new checkeligibleDto();
+//       newCheckeligibleDto={
+//       RefId: RefIdHCHEncrypt,
 
 
-console.log(RefIdHCHEncrypt);
-
-
-
-  return  CheckEligibleHCHDto
+  return  newReplyCheckEligibleHCHDto
 }
 
 
@@ -203,7 +288,7 @@ console.log(RefIdHCHEncrypt);
 
 async episodelist(PID: string ,EpiDate: string,EpiType: string) {
   return this.http
-    .get(`http://10.10.17.92:52773/HCHIntraAPI/GetEpisodeByPID/${PID}/${EpiDate}/${EpiType}`)
+    .get(`http://10.10.17.92:52773/HCHIntraAPI/getEpisodeByPID/${PID}/${EpiDate}/${EpiType}`)
     .pipe(
       map((res) => res.data)
           
@@ -227,10 +312,10 @@ async episodelist(PID: string ,EpiDate: string,EpiType: string) {
     HN: hn,
     VN: vn,
   }
-   await prismaProgest.claimTransection.update({
-    data: Data2,
-    where: {ClaimTranId: 1007}
-}); 
+//    await prismaProgest.claimTransection.update({
+//     data: Data2,
+//     where: {ClaimTranId: 1007}
+// }); 
 
    console.log(hn)
     console.log(createCourseDto);

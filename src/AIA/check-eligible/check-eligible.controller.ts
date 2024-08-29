@@ -62,4 +62,14 @@ export class CheckEligibleController {
     }
       }     
   }
+
+  @Get('/createtran')
+  findClaimTransection() {
+    
+     return 'OOO'
+    //return this.checkEligibleService.Eligible();
+    //return this.checkEligibleService.EncryptAESECB('11750');
+    
+  }
+
 }

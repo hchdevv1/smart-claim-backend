@@ -5,6 +5,7 @@
 export class DataJsonDto {
     IdType:string;
     PID:  string;
+    InsuranceCode : string;
     PolicyTypeCode:  string;
     PolicyType:  string;
     ServiceSettingCode :  string;

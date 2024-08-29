@@ -30,12 +30,15 @@ model PolicyType {
 }
 
 model ClaimTransection {
-  ClaimTranId   Int       @id @default(autoincrement())
-  RefId         String    @unique(map: "unique_refid")
-  TransactionNo String    @unique(map: "unique_transactionno")
-  HN            String
-  VN            String
-  CreateAt      DateTime? @default(dbgenerated("(CURRENT_TIMESTAMP AT TIME ZONE 'Asia/Bangkok'::text)")) @db.Timestamptz(6)
+  ClaimTranId     Int       @id @default(autoincrement())
+  RefId           String    @unique(map: "unique_refid")
+  TransactionNo   String    @unique(map: "unique_transactionno")
+  HN              String
+  VN              String
+  CreateAt        DateTime? @default(dbgenerated("(CURRENT_TIMESTAMP AT TIME ZONE 'Asia/Bangkok'::text)")) @db.Timestamptz(6)
+  UpdateAt        DateTime? @db.Timestamptz(6)
+  ClaimStatus     String?
+  ClaimStatusDesc String?
 }
 
 model ServiceSetting {
@@ -57,4 +60,12 @@ model Claimant {
   CreateAt    DateTime? @default(dbgenerated("(CURRENT_TIMESTAMP AT TIME ZONE 'Asia/Bangkok'::text)")) @db.Timestamptz(6)
   UpdateAt    DateTime? @default(dbgenerated("(CURRENT_TIMESTAMP AT TIME ZONE 'Asia/Bangkok'::text)")) @db.Timestamptz(6)
   Active      Boolean
+}
+
+model ClaimStatus {
+  id           Int     @id @default(autoincrement())
+  InsurerCode  String
+  StatusCode   String
+  StatusDescTH String?
+  StatusDescEN String?
 }
